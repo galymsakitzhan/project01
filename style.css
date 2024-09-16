@@ -1,0 +1,378 @@
+/* Импорт стилей */
+@import "./reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+/* add classes */
+
+.module {
+  margin-top: 15px;
+}
+
+.main {
+  display: flex;
+}
+
+
+/* section 1 = (start) -> left background */
+
+.sidebar-content {
+  position: relative;
+}
+
+
+/* element header */
+.header-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 17px;
+}
+
+.slider-images {
+  position: relative;
+}
+
+#slider-image {
+  width: 100%;
+}
+
+button#prev-image,
+button#next-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(36, 36, 36, 0.9);
+  border: 1px solid rgb(186, 186, 186);
+  padding: 2px 13px 7px 13px;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 15%;
+  z-index: 1;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+button#prev-image {
+  left: 10px; /* Расположение кнопки слева */
+  color: rgb(232, 232, 232);
+}
+
+button#next-image {
+  right: 10px; /* Расположение кнопки справа */
+  color: rgb(232, 232, 232);
+}
+
+button#prev-image:hover,
+button#next-image:hover {
+  background-color: rgba(72, 72, 72, 0.9);
+}
+
+.thumbnails {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: rgb(216, 216, 216);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.thumbnails img {
+  width: 70px;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.thumbnails img:hover {
+  outline: 2px solid rgb(212, 138, 0);
+}
+
+/* element footer */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight:300;
+}
+
+.completed .circle {
+  border-color: #000;
+}
+
+.line {
+  width: 80px;
+  height: 1px;
+  background-color: #999;
+  margin: 0 30px;  
+}
+
+
+
+/* (end) -> left background */
+
+hr {
+  margin: 0 auto;
+  margin: 40px 0 15px 0;
+  border: none;
+  border-top: 1px solid #ababab;
+  padding: 10px;
+  width: 100%;
+}
+
+
+/* section 2 = (start) -> right background */
+
+
+.sidebar {
+  min-width: 480px;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: #f1f0e9;
+  padding: 15px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+
+
+.names {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.modification {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.title-sm {
+  font-size: 25px;
+}
+
+.text-sm {
+  font-size: 13px;
+  color: rgb(87, 87, 87);
+}
+
+.col {
+  padding: 0 25px;
+  position: relative;
+}
+
+.col:not(:last-child) {
+  border-right: 1px solid #ccc;
+}
+
+.col:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1.5px;
+  background-color: #ccc;
+}
+
+.main_conf:hover{
+  outline: 1px solid orange;
+}
+
+.equipment {
+  width: 100%;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  margin: 15px auto;
+  cursor: pointer;
+}
+
+.car__colors button {
+  background-color: rgb(255, 255, 255);
+  width: 125px;
+  height: 125px;
+  border-radius: 5px;
+}
+
+.car__colors button:hover{
+
+  outline: 1px solid orange;
+
+}
+.wheel__button{
+  outline: 1px solid orange;
+}
+
+
+.car__colors {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+/* section 2 = (end) -> right background */
+
+/* section 3 = (start) -> right background */
+
+.request{
+  min-width: 480px;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: #f1f0e9;
+  padding: 15px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+
+.conf__module{
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 15px;
+}
+
+.conf__price{
+  background-color: #d7d7d783;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.conf__name{
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  padding: 10px 15px 10px 0px;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* расстояние между полями */
+}
+
+.form-row input[type="text"] {
+  width: 100%; /* установим ширину для правильного расчета */
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+
+.input__name{
+  display: flex;
+  gap: 15px;
+  
+}
+
+input:focus,
+select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+#back-button {
+  padding: 10px;
+  background-color: #033e7c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#back-button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* section 3 = (end) -> right background */
+
+
+@media (max-width: 550px) {
+  .main{
+    display: block;
+  }
+
+  .header-content{
+    display: none;
+  }
+
+  .thumbnails{
+    position:relative; 
+    display: none;
+    width: 100%;
+  }
+
+  .slider{
+    width: 130%;
+
+  }
+}
