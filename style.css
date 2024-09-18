@@ -400,28 +400,29 @@ a:hover {
   .thumbnails{
     position:absolute; 
     display: flex;
-    width: 100%;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    justify-content: center;
-    padding: 5px;
-    background-color: rgba(237, 237, 237, 0.163);
-    border-radius: 8px;
-    width: 80%;
   }
 
+  .thumbnails {
+    bottom: 5px;
+    transform: translateX(-50%);
+    justify-content: center;
+    padding: 7px 5px;
+    background-color: rgba(226, 226, 226, 0.195);
+    border-radius: 8px;
+    box-shadow: rgba(43, 43, 43, 0.35) 0px 5px 15px;
+    width: 90%;
+  }
   
   .thumbnails img {
-    width: 80px;
+    width: 70px;
     height: auto;
-    margin: 0 5px;
+    margin: 0 7px;
     cursor: pointer;
     border-radius: 5px;
   }
   
   .thumbnails img:hover {
-    outline: 2px solid rgb(212, 138, 0);
+    outline: 1px solid rgb(126, 126, 126);
   }
 
   .sidebar{

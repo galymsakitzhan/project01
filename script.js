@@ -245,6 +245,7 @@ function updateSlider(imageUrls) {
     thumbnailsContainer.appendChild(thumbnail);
   });
 
+  // Добавляем обработчики событий для кнопок переключения
   document.querySelector("#prev-image").addEventListener("click", () => {
     currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
     changeImage(imageUrls[currentIndex]);
@@ -255,6 +256,7 @@ function updateSlider(imageUrls) {
     changeImage(imageUrls[currentIndex]);
   });
 
+  // Функция для смены изображения с анимацией
   function changeImage(url) {
     sliderImage.classList.remove("show"); // Убираем класс перед сменой
     setTimeout(() => {
@@ -262,7 +264,37 @@ function updateSlider(imageUrls) {
       sliderImage.classList.add("show"); // Добавляем класс снова для анимации
     }, 200); // Время задержки для плавного перехода
   }
+
+  // Логика для свайпа на мобильных устройствах
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  sliderImage.addEventListener("touchstart", handleTouchStart, false);
+  sliderImage.addEventListener("touchmove", handleTouchMove, false);
+  sliderImage.addEventListener("touchend", handleTouchEnd, false);
+
+  function handleTouchStart(event) {
+    touchStartX = event.changedTouches[0].screenX;
+  }
+
+  function handleTouchMove(event) {
+    touchEndX = event.changedTouches[0].screenX;
+  }
+
+  function handleTouchEnd() {
+    if (touchStartX - touchEndX > 50) {
+      // Свайп влево - показать следующее изображение
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      changeImage(imageUrls[currentIndex]);
+    }
+    if (touchEndX - touchStartX > 50) {
+      // Свайп вправо - показать предыдущее изображение
+      currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+      changeImage(imageUrls[currentIndex]);
+    }
+  }
 }
+
 
 
 
