@@ -25,7 +25,6 @@
   position: relative;
 }
 
-
 /* element header */
 .header-content{
   display: flex;
@@ -36,11 +35,18 @@
 
 .slider-images {
   position: relative;
-  
 }
 
 #slider-image {
+  transition: opacity 0.6s ease-in-out, filter 0.7s ease-in-out;
+  opacity: 0;
+  filter: blur(10px);
   width: 100%;
+}
+
+#slider-image.show {
+  opacity: 1;
+  filter: blur(0);
 }
 
 button#prev-image,
@@ -137,25 +143,7 @@ button#next-image:hover {
 }
 
 
-#slider-image {
-  transition: opacity 0.6s ease-in-out, filter 0.7s ease-in-out;
-  opacity: 0;
-  filter: blur(10px);
-}
 
-#slider-image.show {
-  opacity: 1;
-  filter: blur(0);
-}
-
-.thumbnails img:hover {
-  /* transform: scale(1.01); */
-}
-
-.slider {
-  position: relative;
-  overflow: hidden;
-}
 
 
 
@@ -381,62 +369,44 @@ a:hover {
 /* section 3 = (end) -> right background */
 
 
-@media (max-width: 700px) {
-  .main {
-      display: block;
-  }
-
-  .sidebar {
-      max-width: 100%;
-      min-width: 100%;
-      padding: 10px;
-  }
-
-  .request {
-      max-width: 100%;
-      min-width: 100%;
-      padding: 10px;
-  }
-
-  .header-content img {
-      width: 100px;
-  }
-
-  #slider-image {
-      width: 100%;
-  }
-
-  button#prev-image,
-  button#next-image {
-      padding: 5px 10px;
-      font-size: 25px;
-  }
-}
-
 
 @media (max-width: 550px) {
-  .main{
-    display: block;
-  }
+ .main{
+  display: block;
+ }
 
-  .header-content{
-    display: none;
-  }
+ .header-content{
+  display: none;
+ }
 
+ .slider{
+  height: 120%;
+ }
 
-
-  .thumbnails{
-    position:relative; 
-    display: none;
-    width: 100%;
-  }
-
-  .slider{
-    width: 100%;
-  }
+ .thumbnails {
+  width: 80%;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  padding: 6px;
+  background-color: rgba(216, 216, 216, 0);
+  border-radius: 5px;
+  box-shadow: none;
 }
 
-/* @media (max-width: 350px) {
+.thumbnails img {
+  width: 50px;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-} */
+.thumbnails img:hover {
+  outline: 2px solid rgb(212, 138, 0);
+}
+}
+
 
