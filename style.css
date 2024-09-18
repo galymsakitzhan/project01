@@ -154,14 +154,9 @@ button#next-image:hover {
 
 .slider {
   position: relative;
-  /* height: 300px; */
   overflow: hidden;
 }
 
-.slider-images {
-  position: relative;
-  height: 100%;
-}
 
 
 
@@ -386,6 +381,39 @@ a:hover {
 /* section 3 = (end) -> right background */
 
 
+@media (max-width: 700px) {
+  .main {
+      display: block;
+  }
+
+  .sidebar {
+      max-width: 100%;
+      min-width: 100%;
+      padding: 10px;
+  }
+
+  .request {
+      max-width: 100%;
+      min-width: 100%;
+      padding: 10px;
+  }
+
+  .header-content img {
+      width: 100px;
+  }
+
+  #slider-image {
+      width: 100%;
+  }
+
+  button#prev-image,
+  button#next-image {
+      padding: 5px 10px;
+      font-size: 25px;
+  }
+}
+
+
 @media (max-width: 550px) {
   .main{
     display: block;
@@ -395,6 +423,8 @@ a:hover {
     display: none;
   }
 
+
+
   .thumbnails{
     position:relative; 
     display: none;
@@ -402,6 +432,11 @@ a:hover {
   }
 
   .slider{
-    width: 125%;
+    width: 100%;
   }
 }
+
+/* @media (max-width: 350px) {
+
+} */
+
