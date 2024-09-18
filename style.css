@@ -410,7 +410,7 @@ a:hover {
     background-color: rgba(226, 226, 226, 0.195);
     border-radius: 8px;
     box-shadow: rgba(43, 43, 43, 0.35) 0px 5px 15px;
-    width: 90%;
+    width: 80%;
   }
   
   .thumbnails img {
@@ -451,5 +451,16 @@ a:hover {
     overflow-y: unset;
     max-height: 100%;
     min-height: 100%;
+  }
+
+  .thumbnails {
+    bottom: 5px;
+    transform: translateX(-50%);
+    justify-content: center;
+    padding: 7px 5px;
+    background-color: rgba(226, 226, 226, 0.195);
+    border-radius: 8px;
+    box-shadow: rgba(43, 43, 43, 0.35) 0px 5px 15px;
+    width: 90%;
   }
 }

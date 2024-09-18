@@ -297,8 +297,6 @@ function updateSlider(imageUrls) {
 
 
 
-
-
 function calculateTotalPrice(config) {
   let totalPrice = config.price;
   // Добавляем цену выбранного цвета
