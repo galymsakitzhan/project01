@@ -85,6 +85,7 @@ button#next-image:hover {
   background-color: rgb(216, 216, 216);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: opacity 0.6s ease-in-out
 }
 
 .thumbnails img {
@@ -93,10 +94,11 @@ button#next-image:hover {
   margin: 0 5px;
   cursor: pointer;
   border-radius: 5px;
+
 }
 
 .thumbnails img:hover {
-  outline: 2px solid rgb(212, 138, 0);
+  outline: 0.5px solid rgb(122, 122, 122); 
 }
 
 /* element footer */
@@ -410,7 +412,7 @@ a:hover {
     background-color: rgba(226, 226, 226, 0.195);
     border-radius: 8px;
     box-shadow: rgba(43, 43, 43, 0.35) 0px 5px 15px;
-    width: 80%;
+    width: 85%;
   }
   
   .thumbnails img {
@@ -434,8 +436,16 @@ a:hover {
     min-height: 100%;
   }
 
+  .request{
+    min-width: 60vh;
+    max-width: 60vh;
+    height: auto;
+    overflow-y: unset;
+    max-height: 100%;
+    min-height: 100%;
+  }
   .slider{
-    width: 130%;
+    width: 100%;
   }
 
   .sidebar-content{
@@ -443,8 +453,17 @@ a:hover {
   }
 }
 
-@media (max-width: 380px) {
+/* @media (max-width: 380px) {
   .sidebar{
+    min-width: 63vh;
+    max-width: 60vh;
+    height: auto;
+    overflow-y: unset;
+    max-height: 100%;
+    min-height: 100%;
+  }
+
+  .request{
     min-width: 63vh;
     max-width: 60vh;
     height: auto;
@@ -463,4 +482,4 @@ a:hover {
     box-shadow: rgba(43, 43, 43, 0.35) 0px 5px 15px;
     width: 90%;
   }
-}
+} */
