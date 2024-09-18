@@ -36,6 +36,7 @@
 
 .slider-images {
   position: relative;
+  
 }
 
 #slider-image {
@@ -136,6 +137,33 @@ button#next-image:hover {
 }
 
 
+#slider-image {
+  transition: opacity 0.6s ease-in-out, filter 0.7s ease-in-out;
+  opacity: 0;
+  filter: blur(10px);
+}
+
+#slider-image.show {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.thumbnails img:hover {
+  /* transform: scale(1.01); */
+}
+
+.slider {
+  position: relative;
+  /* height: 300px; */
+  overflow: hidden;
+}
+
+.slider-images {
+  position: relative;
+  height: 100%;
+}
+
+
 
 /* (end) -> left background */
 
@@ -219,8 +247,8 @@ hr {
 
 .car__colors button {
   background-color: rgb(255, 255, 255);
-  width: 125px;
-  height: 125px;
+  width: 128px;
+  height: 128px;
   border-radius: 5px;
 }
 
@@ -240,6 +268,8 @@ hr {
   flex-wrap: wrap;
   gap: 22px;
 }
+
+
 
 /* section 2 = (end) -> right background */
 
@@ -372,7 +402,6 @@ a:hover {
   }
 
   .slider{
-    width: 130%;
-
+    width: 125%;
   }
 }

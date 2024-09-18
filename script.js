@@ -3,10 +3,20 @@ import { carData } from "./data.js";
 let selectedExteriorImages = [];
 let selectedInteriorImages = [];
 
+
+// function -> choosing default car
+document.addEventListener("DOMContentLoaded", () => {
+  const selectedModel = carData.models[0];
+  displayConfigurations(selectedModel);
+});
+
+
+// function -> (displayConfigurations)
 function displayConfigurations(model) {
   const equipmentContainer = document.querySelector(".option__car");
   equipmentContainer.innerHTML = "";
   model.configurations.forEach((config, index) => {
+
     const configDiv = document.createElement("div");
     configDiv.classList.add("main_conf");
     configDiv.classList.add("equipment");
@@ -32,107 +42,40 @@ function displayConfigurations(model) {
       renderCarData(model, config);
     });
 
+        if (index === 0) {
+          configDiv.click();
+        }
     equipmentContainer.appendChild(configDiv);
-
-    if (index === 0) {
-      configDiv.click();
-    }
   });
 }
 
-// Инициализация данных при загрузке страницы
-document.addEventListener("DOMContentLoaded", () => {
-  const selectedModel = carData.models[0]; // Выбираем первую модель для отображения
 
-  // Отображаем конфигурации модели как кнопки
-  displayConfigurations(selectedModel);
-
-  // Отображаем данные для первой конфигурации по умолчанию (handled by configDiv.click())
-});
-
-// Функция для расчета общей цены
-function calculateTotalPrice(config) {
-  let totalPrice = config.price; // Начальная цена конфигурации
-
-  // Добавляем цену выбранного цвета
-  const selectedExterior = config.exterior.find((ex) => ex.isSelected);
-  if (selectedExterior) totalPrice += selectedExterior.price;
-
-  // Добавляем цену выбранного колеса
-  const selectedWheel = config.wheels.find((w) => w.isSelected);
-  if (selectedWheel) totalPrice += selectedWheel.price;
-
-  // Добавляем цену выбранного интерьера
-  const selectedInterior = config.interior.find((i) => i.isSelected);
-  if (selectedInterior) totalPrice += selectedInterior.price || 0;
-
-  return totalPrice;
-}
-
-// Функция для отображения данных автомобиля (цвета, колеса, интерьер)
+// function -> (renderCarData)
 function renderCarData(model, selectedConfig) {
   document.querySelector(".names").textContent = model.name;
 
   displayModifications(selectedConfig);
-  displayExterior(selectedConfig); // Отображаем цвета экстерьера
+  displayExterior(selectedConfig);
   displayWheels(selectedConfig);
   displayInterior(selectedConfig);
 
-  // Инициализируем выбранные изображения экстерьера по умолчанию
   if (selectedConfig.exterior.length > 0) {
     selectedExteriorImages = selectedConfig.exterior[0].carImageUrl;
   }
-
   if (selectedConfig.interior.length > 0) {
     selectedInteriorImages = selectedConfig.interior[0].interiorImageUrl;
   }
-
-  // Отображаем объединенные изображения в слайдере
   updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
 
-  // Расчет и отображение общей цены
   const totalPrice = calculateTotalPrice(selectedConfig);
   document.querySelector(".total-price").textContent = `${totalPrice}₸`;
 }
 
-// Функция для переключения изображений в слайдере
-function updateSlider(imageUrls) {
-  let currentIndex = 0;
-  const sliderImage = document.querySelector("#slider-image");
-  const thumbnailsContainer = document.querySelector("#thumbnails");
 
-  // Отображаем первое изображение
-  sliderImage.src = imageUrls[currentIndex];
-
-  // Очищаем контейнер миниатюр перед добавлением новых
-  thumbnailsContainer.innerHTML = "";
-
-  // Создаем миниатюры для каждого изображения
-  imageUrls.forEach((url, index) => {
-    const thumbnail = document.createElement("img");
-    thumbnail.src = url;
-    thumbnail.addEventListener("click", () => {
-      currentIndex = index;
-      sliderImage.src = url;
-    });
-    thumbnailsContainer.appendChild(thumbnail);
-  });
-
-  document.querySelector("#prev-image").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-    sliderImage.src = imageUrls[currentIndex];
-  });
-
-  document.querySelector("#next-image").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % imageUrls.length;
-    sliderImage.src = imageUrls[currentIndex];
-  });
-}
-
-// Функции для отображения различных частей автомобиля
+// function -> (adding modification text about car)
 function displayModifications(config) {
   const modificationContainer = document.querySelector(".modification");
-  modificationContainer.innerHTML = ""; // Очищаем контейнер перед добавлением
+  modificationContainer.innerHTML = "";
   config.modification.forEach((mod) => {
     const col = document.createElement("div");
     col.classList.add("col");
@@ -144,6 +87,8 @@ function displayModifications(config) {
   });
 }
 
+
+
 function displayExterior(config) {
   const exteriorContainer = document.querySelector(".exterior .car__colors");
   const nameExterior = document.querySelector(".name__exterior");
@@ -153,7 +98,7 @@ function displayExterior(config) {
 
   config.exterior.forEach((color, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="85px">`;
+    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px">`;
     button.dataset.carImageUrl = JSON.stringify(color.carImageUrl); // Сохраняем массив изображений в атрибуте data
 
     // Устанавливаем первое имя и цену по умолчанию
@@ -187,6 +132,7 @@ function displayExterior(config) {
     exteriorContainer.appendChild(button);
   });
 }
+
 
 function displayWheels(config) {
   const wheelsContainer = document.querySelector(".wheels .car__colors");
@@ -228,6 +174,7 @@ function displayWheels(config) {
     wheelsContainer.appendChild(button);
   });
 }
+
 
 function displayInterior(config) {
   const interiorContainer = document.querySelector(".interior .car__colors");
@@ -273,6 +220,69 @@ function displayInterior(config) {
     interiorContainer.appendChild(button);
   });
 }
+
+// Функция для переключения изображений в слайдере
+function updateSlider(imageUrls) {
+  let currentIndex = 0;
+  const sliderImage = document.querySelector("#slider-image");
+  const thumbnailsContainer = document.querySelector("#thumbnails");
+
+  // Отображаем первое изображение
+  sliderImage.src = imageUrls[currentIndex];
+  sliderImage.classList.add("show");
+
+  // Очищаем контейнер миниатюр перед добавлением новых
+  thumbnailsContainer.innerHTML = "";
+
+  // Создаем миниатюры для каждого изображения
+  imageUrls.forEach((url, index) => {
+    const thumbnail = document.createElement("img");
+    thumbnail.src = url;
+    thumbnail.addEventListener("click", () => {
+      currentIndex = index;
+      changeImage(url);
+    });
+    thumbnailsContainer.appendChild(thumbnail);
+  });
+
+  document.querySelector("#prev-image").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+    changeImage(imageUrls[currentIndex]);
+  });
+
+  document.querySelector("#next-image").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % imageUrls.length;
+    changeImage(imageUrls[currentIndex]);
+  });
+
+  function changeImage(url) {
+    sliderImage.classList.remove("show"); // Убираем класс перед сменой
+    setTimeout(() => {
+      sliderImage.src = url; // Меняем изображение
+      sliderImage.classList.add("show"); // Добавляем класс снова для анимации
+    }, 200); // Время задержки для плавного перехода
+  }
+}
+
+
+
+
+function calculateTotalPrice(config) {
+  let totalPrice = config.price;
+  // Добавляем цену выбранного цвета
+  const selectedExterior = config.exterior.find((ex) => ex.isSelected);
+  if (selectedExterior) {
+    totalPrice += selectedExterior.price;
+  }
+  // Добавляем цену выбранного колеса
+  const selectedWheel = config.wheels.find((w) => w.isSelected);
+  if (selectedWheel) totalPrice += selectedWheel.price;
+  // Добавляем цену выбранного интерьера
+  const selectedInterior = config.interior.find((i) => i.isSelected);
+  if (selectedInterior) totalPrice += selectedInterior.price || 0;
+  return totalPrice;
+}
+
 
 // Инициализация данных при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
@@ -320,6 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 let selectedCar = {};
 let formData = {};
