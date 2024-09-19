@@ -417,8 +417,8 @@ a:hover {
   }
 
   .thumbnails {
-    position: absolute;
-    bottom: 10px;
+    position: relative;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -437,12 +437,12 @@ a:hover {
     height: auto;
     margin: 0 5px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2px;
   
   }
   
   .thumbnails img:hover {
-    outline: 0.5px solid rgb(122, 122, 122); 
+    outline: 1px solid rgba(62, 62, 62, 0.705); 
   }
 
 }
