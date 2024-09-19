@@ -460,7 +460,7 @@ a:hover {
   }
 }
 
-@media (min-width: 330px) and (max-width: 420px) {
+@media (min-width: 330px) and (max-width: 440px) {
   .sidebar {
     min-width: 100%; /* Take full width within this range */
     max-width: 100%; /* Full width for mobile responsiveness */
