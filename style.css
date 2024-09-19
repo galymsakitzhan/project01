@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 17px;
+  padding: 5px;
 }
 
 .slider-images {
@@ -394,6 +394,9 @@ a:hover {
     display: block;
   }
 
+  footer{
+    display: none;
+  }
   .car__colors button{
     width: 133px;
     width: 133px;
@@ -442,6 +445,12 @@ a:hover {
     outline: 1px solid rgba(62, 62, 62, 0.705); 
   }
   .sidebar {
+    overflow-y: unset;
+    min-height: 100%;
+    max-height: 100%;
+  }
+
+  .request{
     overflow-y: unset;
     min-height: 100%;
     max-height: 100%;
