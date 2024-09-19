@@ -271,7 +271,7 @@ hr {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 22px;
+  gap: 20px;
 }
 
 
@@ -389,20 +389,56 @@ a:hover {
 }
 
 /* section 3 = (end) -> right background */
+@media (max-width: 460px) {
 
-@media (min-width: 330px) and (max-width: 460px) {
+
+  .car__colors button{
+    width: 133px;
+    width: 133px;
+  }
+
+}
+
+@media (min-width: 330px) and (max-width: 420px) {
   .sidebar {
     min-width: 100%; /* Take full width within this range */
     max-width: 100%; /* Full width for mobile responsiveness */
     padding: 10px;   /* Reduce padding for smaller screens */
   }
+
+  .car__colors button{
+    width: 110px;
+    width: 110px;
+  }
+
 }
 
 /* Optional: Media Query for screens below 330px */
-@media (max-width: 330px) {
+@media (max-width: 380px) {
   .sidebar {
     min-width: 100%; /* Ensure full width for very small screens */
     max-width: 100%;
     padding: 8px;    /* Further reduce padding for very small screens */
+  }
+
+  .car__colors button{
+    width: 105px;
+    width: 105px;
+  }
+
+  .car__colors {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 19px;
+  }
+}
+
+@media (max-width: 360px) {
+  .car__colors {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 }
