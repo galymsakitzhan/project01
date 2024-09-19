@@ -487,11 +487,7 @@ a:hover {
   }
 
   .dealer{
-    font-size: 15px;
-    padding: 15px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    height: 50px;
   }
 
   .title-sm {
