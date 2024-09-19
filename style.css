@@ -196,7 +196,6 @@ hr {
 }
 
 
-
 .names {
   font-size: 30px;
   font-weight: 500;
@@ -404,6 +403,14 @@ a:hover {
     font-size: 19px;
   }
 
+  .title-sm {
+    font-size: 23px;
+  }
+  
+  .text-sm {
+    font-size: 14px;
+    color: rgb(87, 87, 87);
+  }
 
 
 }
@@ -428,10 +435,24 @@ a:hover {
 
   input[type="text"],
   input[type="tel"],
-  input[type="email"],
-  select {
+  input[type="email"]
+  {
     padding: 15px;
     font-size: 15px;
+  }
+
+  #dealer{
+    padding: 15px;
+    font-size: 15px;
+  }
+
+  .title-sm {
+    font-size: 19px;
+  }
+  
+  .text-sm {
+    font-size: 10px;
+    color: rgb(87, 87, 87);
   }
 
 
@@ -462,6 +483,16 @@ a:hover {
     flex-wrap: wrap;
     gap: 19px;
   }
+
+  .title-sm {
+    font-size: 20px;
+  }
+  
+  .text-sm {
+    font-size: 9px;
+    color: rgb(87, 87, 87);
+  }
+
 }
 
 @media (max-width: 360px) {
