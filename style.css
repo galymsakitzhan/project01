@@ -488,12 +488,12 @@ a:hover {
 
   .dealer{
     height: 50px;
-    font-size: 15px;
+    font-size: 18px;
     padding: 0 15px;
   }
 
   .dealer option{
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .title-sm {
