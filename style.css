@@ -403,11 +403,11 @@ a:hover {
   }
   input[type="text"],
   input[type="tel"],
-  input[type="email"],
-  select {
+  input[type="email"]{
     padding: 20px;
-    font-size: 19px;
+    font-size: 15px;
   }
+  
 
   .title-sm {
     font-size: 23px;
