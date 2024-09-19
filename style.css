@@ -396,6 +396,15 @@ a:hover {
     width: 133px;
     width: 133px;
   }
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  select {
+    padding: 20px;
+    font-size: 19px;
+  }
+
+
 
 }
 
@@ -416,6 +425,15 @@ a:hover {
     width: 110px;
     width: 110px;
   }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  select {
+    padding: 15px;
+    font-size: 15px;
+  }
+
 
 }
 
