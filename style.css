@@ -406,6 +406,12 @@ a:hover {
     padding: 10px;   /* Reduce padding for smaller screens */
   }
 
+  .request{
+    min-width: 100%; /* Take full width within this range */
+    max-width: 100%; /* Full width for mobile responsiveness */
+    padding: 10px;  
+  }
+
   .car__colors button{
     width: 110px;
     width: 110px;
@@ -419,6 +425,12 @@ a:hover {
     min-width: 100%; /* Ensure full width for very small screens */
     max-width: 100%;
     padding: 8px;    /* Further reduce padding for very small screens */
+  }
+
+  .request{
+    min-width: 100%; /* Ensure full width for very small screens */
+    max-width: 100%;
+    padding: 8px; 
   }
 
   .car__colors button{
