@@ -678,7 +678,7 @@ a:hover {
   }
 }
 
-@media (max-width: 410px) {
+@media (max-width: 411px) {
   .car__colors button{
     width: 100px;
     height: 100px;
