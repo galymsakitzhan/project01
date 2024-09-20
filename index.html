@@ -8,28 +8,34 @@
 </head>
 <body>
     <main class="main">
-
-
         <section class="sidebar-content">
             <header class="header-content">
-                <img src="https://www.carlogos.org/car-logos/zeekr-logo-2300x700.png" alt="" width="125px">
-                <img src="./image/orbis-logo-black.svg" alt="" width="165px">
-                <!-- <div style="display: flex;" class="header__photo">
-                    <img src="./image/icon1.png" alt="" width="42px">
-                    <div>
-                        <p style="color: rgb(76, 76, 76); font-size: 16px;">Гарантия на автомобиль</p>
-                        <p style="font-size: 19px;">5 лет или 100 000 км</p>
+                <img src="https://www.carlogos.org/car-logos/zeekr-logo-2300x700.png" alt=""class="header-content-img1">
+                <img src="./image/orbis-logo-black.svg" alt=""class="header-content-img2">
+                <div class="hoxton">
+                    <div style="display: flex;">
+                        <img src="./image/icon1.png" alt="" width="42px">
+                        <div>
+                            <p style="color: rgb(76, 76, 76)" class="ts">Гарантия на автомобиль</p>
+                            <p  class="tx">5 лет или 100 000 км</p>
+                        </div>
+                    </div>
+                    <div class="hoxton">
+                        <img src="./image/icon2.png" alt="" width="42px">
+                        <div>
+                            <p style="color: rgb(76, 76, 76)" class="ts">Гарантия на батарею</p>
+                            <p class="tx">8 лет или 200 000 км</p>
+                        </div>
                     </div>
                 </div>
-                <div style="display: flex;" class="header__photo">
-                    <img src="./image/icon2.png" alt="" width="42px">
-                    <div>
-                        <p style="color: rgb(76, 76, 76); font-size: 16px;">Гарантия на батарею</p>
-                        <p style="font-size: 19px;">8 лет или 200 000 км</p>
-                    </div>
-                </div> -->
-                <button style="background-color: rgb(255, 172, 19); padding: 10px 15px; color: aliceblue; border-radius: 3px;">Сменить модель</button>
+                <button class="header-button">Сменить модель</button>
             </header>
+
+            <div class="header-content1" style="display: none;">
+                <img src="https://www.carlogos.org/car-logos/zeekr-logo-2300x700.png" alt="" width="125px">
+                <img src="./image/orbis-logo-black.svg" alt="" width="165px">
+                <button style="background-color: rgb(255, 172, 19); padding: 10px 15px; color: aliceblue; border-radius: 3px;">Сменить модель</button>
+            </div>
             <div class="slider">
               <button id="prev-image">&#8249;</button>
                 <div id="combined-slider" class="slider-images">
@@ -180,9 +186,6 @@
         </section>
         
     </main>
-
-    <p></p>
-
     <script type="module" src="script.js"></script>
 </body>
 </html>
