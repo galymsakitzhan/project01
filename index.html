@@ -65,11 +65,11 @@
 
 
         <section class="sidebar">
-            <div class="div" style="display: flex;   font-size: 30px; font-weight: 500; gap: 15px;">
+            <div class="sidebar-title">
                 <h2 class="">Официальный</h2>
                 <h2 class="names"></h2>
             </div>
-            <p style="margin: 13px 0; font-size: 17px;"><a style="color: orange;" href="https://zeekr-configurator.kz/userdata/rubrics/rubrics_2/pdf_ru.pdf?1725615272">Спецификация</a></p>
+            <p style="margin: 13px 0; font-size: 18px;"><a style="color: orange;" href="https://zeekr-configurator.kz/userdata/rubrics/rubrics_2/pdf_ru.pdf?1725615272">Спецификация</a></p>
 
             <div class="modification module">
             </div>
@@ -110,16 +110,40 @@
                 </div>
             </div>
 
+
+
             <hr>
 
-            <div class="total-price"></div>
-            <button id="add-section-button" style="background-color: rgb(48, 48, 48); padding: 17px 10px; width: 100%; border-radius: 5px; color: #fff;">hello</button>
+            <p class="border-text">Закажите ваш Zeekr прямо сейчас и <br> приготовьтесь к невероятным впечатлениям от <br>вождения.</p>
+
+            <hr>
+
+            <!-- <div class="total-price" style="display: none;"></div>
+            <button id="add-section-button" style="background-color: rgb(48, 48, 48); padding: 15px 10px; width: 100%; border-radius: 5px; color: #fff; margin: 20px 0;">Продолжить</button>
+
+            <hr> -->
+
+
+            <div class="total-price" style="display: none;"></div>
+            <button id="add-section-button" style="background-color: rgb(48, 48, 48); padding: 15px 10px; width: 100%; border-radius: 5px; color: #fff; margin: 20px 0">Продолжить</button>
+        
+            <p class="end-text">Предупреждение: Наличие моделей автомобилей, опций,
+                характеристик и цветов может различаться в зависимости от рынка,
+                 производитель Zeekr оставляет за собой право вносить изменения
+                  без предварительного уведомления. На изображениях и
+                   видеоматериалах могут быть показаны дополнительные опции,
+                    которые не доступны на всех рынках. Изображения и видео
+                    представлены исключительно для иллюстрации.</p>
         </section>
 
 
 
         <section class="request">
-            <button id="back-button">Назад</button>
+            <button id="back-button" style="display: flex; align-items: center; text-align: center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg> 
+                  <p>Назад</p></button>
             <div class="configuration">
                 <div class="conf__name">
                     <h2 class="configuration__car">Конфигурация</h2>
@@ -150,7 +174,7 @@
             <hr>
 
 
-            <h3>Заполните заявку</h3>
+            <h3 class="form-h3">Заполните заявку</h3>
 
 
             <form id="customer-form">
@@ -174,14 +198,14 @@
                   <option value="dealer8">Семей</option>
                 </select>
               
-                <div>
-                  <input type="checkbox" id="consent" name="consent" required>
+                <div style="display: flex;"">
+                  <input type="checkbox" id="consent" name="consent" required style="width:25px;height:32px;">
                   <label for="consent">Настоящим подтверждаю, что ознакомлен и согласен с условиями 
-                    <a href="#">Согласия о предоставлении персональных данных</a>
+                    <a href="#" style="color: orange;">Согласия о предоставлении персональных данных</a>
                   </label>
                 </div>
               
-                <button type="submit" style="background-color: #555;color: #fff;padding: 10px 20px; border-radius: 5px; width: 100%; margin: 15px auto;">Отправить</button>
+                <button type="submit" style="background-color: #555;color: #fff;padding: 15px 10px; border-radius: 5px; width: 100%; margin: 15px auto;">Отправить</button>
               </form>
         </section>
         

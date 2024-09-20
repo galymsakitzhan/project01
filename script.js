@@ -27,7 +27,14 @@ function displayConfigurations(model) {
 
     const configPrice = document.createElement("div");
     configPrice.classList.add("equipment__price");
-    configPrice.textContent = `${config.price}₸`;
+    configPrice.innerHTML = `<span class="tradein">от ${config.price} ₸</span><div class="trade1">с учетом Trade-In</div>`;
+
+    const configPrice1 = document.createElement("div");
+    configPrice1.classList.add("equipment__price1");
+    configPrice1.innerHTML = `<span class="tradein">от ${config.price} ₸</span>`;
+
+
+
 
     configDiv.appendChild(configName);
     configDiv.appendChild(configPrice);
@@ -214,7 +221,7 @@ function displayInterior(config) {
       const totalPrice = calculateTotalPrice(config);
       document.querySelector(
         ".total-price"
-      ).textContent = `Итоговая цена: ${totalPrice}₸`;
+      ).textContent = `${totalPrice}₸`;
     });
 
     interiorContainer.appendChild(button);

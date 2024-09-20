@@ -11,7 +11,7 @@
 /* add classes */
 
 .module {
-  margin: 25px 0;
+  margin: 20px 0;
 }
 
 .main {
@@ -174,7 +174,7 @@ button#next-image:hover {
 
 hr {
   margin: 0 auto;
-  margin: 40px 0 15px 0;
+  margin: 40px 0px 0px 0px ;
   border: none;
   border-top: 1px solid #ababab;
   padding: 10px;
@@ -206,6 +206,7 @@ hr {
   justify-content: center;
   text-align: center;
   gap: 10px;
+  margin: 35px 0 20px 0;
 }
 
 .title-sm {
@@ -247,8 +248,14 @@ hr {
   background-color: rgb(255, 255, 255);
   margin: 15px auto;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
+.tradein {
+  font-size: 1.1em;
+  color: orange;
+}
 
 .car__colors{
   display: flex;
@@ -296,6 +303,9 @@ hr {
   overflow-y: auto;
 }
 
+.request .trade1{
+  display: none;
+}
 
 .conf__module{
   display: flex;
@@ -317,10 +327,29 @@ hr {
 }
 
 
+.border-text{
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid rgb(104, 104, 104);
+  border-radius: 3px;
+}
+
+.end-text{
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgb(148, 148, 148);
+  /* text-align: center; */
+}
+
+
+.form-h3{
+
+}
+
 form {
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .form-row {
@@ -344,7 +373,7 @@ input[type="tel"],
 input[type="email"],
 select {
   width: 100%;
-  padding: 10px;
+  padding: 15px 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -355,6 +384,8 @@ select {
 
 input[type="checkbox"] {
   margin-right: 10px;
+  accent-color: orange;
+  color: white;
 }
 
 
@@ -371,18 +402,10 @@ select:focus {
 }
 
 #back-button {
-  padding: 10px;
-  background-color: #033e7c;
-  color: #fff;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   transition: background-color 0.3s;
-}
-
-#back-button:hover {
-  background-color: #0056b3;
 }
 
 a {
@@ -512,6 +535,16 @@ a:hover {
 @media (max-width: 540px) {
   .thumbnails{
     width: 83%;
+  }
+  .sidebar-title{
+    display: flex;
+    font-size: 28px;
+    font-weight: 500;
+    gap: 15px;
+  }
+  .names {
+    font-size: 28px;
+    font-weight: 500;
   }
 }
 
@@ -652,6 +685,16 @@ a:hover {
   .car__colors button{
     width: 120px;
     height: 120px;
+  }
+  .sidebar-title{
+    display: flex;
+    font-size: 25px;
+    font-weight: 500;
+    gap: 15px;
+  }
+  .names {
+    font-size: 25px;
+    font-weight: 500;
   }
 
 }
