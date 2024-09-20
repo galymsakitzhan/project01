@@ -11,7 +11,7 @@
 /* add classes */
 
 .module {
-  margin-top: 15px;
+  margin: 25px 0;
 }
 
 .main {
@@ -190,7 +190,7 @@ hr {
   max-width: 480px;
   min-height: 100vh;
   background-color: #f1f0e9;
-  padding: 15px;
+  padding: 25px;
   max-height: 100vh;
   overflow-y: auto;
 }
@@ -213,7 +213,7 @@ hr {
 }
 
 .text-sm {
-  font-size: 13px;
+  font-size: 12px;
   color: rgb(87, 87, 87);
 }
 
@@ -249,10 +249,17 @@ hr {
   cursor: pointer;
 }
 
+
+.car__colors{
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 24px;
+}
 .car__colors button {
   background-color: rgb(255, 255, 255);
-  width: 128px;
-  height: 128px;
+  width: 121px;
+  height: 121px;
   border-radius: 5px;
 }
 
@@ -266,12 +273,12 @@ hr {
 }
 
 
-.car__colors {
+/* .car__colors {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-}
+} */
 
 
 
@@ -284,7 +291,7 @@ hr {
   max-width: 480px;
   min-height: 100vh;
   background-color: #f1f0e9;
-  padding: 15px;
+  padding: 25px;
   max-height: 100vh;
   overflow-y: auto;
 }
@@ -388,7 +395,81 @@ a:hover {
 }
 
 /* section 3 = (end) -> right background */
-@media (max-width: 460px) {
+
+
+@media (max-width: 1024px) {
+  .main{
+    display: block;
+  }
+
+  footer{
+    display: none;
+  }
+  .sidebar{
+    min-width: 100%;
+    overflow-y: unset;
+    min-height: 100%;
+    max-height: 100%;
+  }
+  .request{
+    min-width: 100%;
+    overflow-y: unset;
+    min-height: 100%;
+    max-height: 100%;
+  }
+}
+
+@media (max-width: 770px) {
+  .main{
+    display: block;
+  }
+
+  footer{
+    display: none;
+  }
+  .sidebar{
+    min-width: 100%;
+    overflow-y: unset;
+    min-height: 100%;
+    max-height: 100%;
+  }
+  .request{
+    min-width: 100%;
+    overflow-y: unset;
+    min-height: 100%;
+    max-height: 100%;
+  }
+
+  .header__photo{
+    display: none;
+  }
+
+  .thumbnails {
+    position: relative;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: opacity 0.6s ease-in-out;
+    width: 75%;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+}
+
+
+@media (max-width: 540px) {
+  .thumbnails{
+    width: 83%;
+  }
+}
+
+@media (max-width: 480px) {
 
   .main{
     display: block;
@@ -397,6 +478,8 @@ a:hover {
   footer{
     display: none;
   }
+
+
   .car__colors button{
     width: 133px;
     width: 133px;
@@ -404,7 +487,7 @@ a:hover {
   input[type="text"],
   input[type="tel"],
   input[type="email"]{
-    padding: 20px;
+    padding: 15px;
     font-size: 15px;
   }
   
@@ -429,8 +512,7 @@ a:hover {
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: opacity 0.6s ease-in-out;
-    width: 100%;
-    border-radius: 0px;
+    width: 80%;
   }
   
   .thumbnails img {
@@ -458,24 +540,25 @@ a:hover {
   .header-content{
     display: none;
   }
+
 }
 
-@media (min-width: 330px) and (max-width: 440px) {
+@media (max-width: 480px) {
   .sidebar {
     min-width: 100%; /* Take full width within this range */
     max-width: 100%; /* Full width for mobile responsiveness */
-    padding: 10px;   /* Reduce padding for smaller screens */
+    padding: 18px; 
   }
 
   .request{
     min-width: 100%; /* Take full width within this range */
     max-width: 100%; /* Full width for mobile responsiveness */
-    padding: 10px;  
+    padding: 18px; 
   }
 
   .car__colors button{
-    width: 110px;
-    height: 110px;
+    width: 109px;
+    height: 109px;
   }
 
   input[type="text"],
@@ -504,8 +587,68 @@ a:hover {
     font-size: 10px;
     color: rgb(87, 87, 87);
   }
+}
+
+@media (max-width: 470px) {
+  .thumbnails{
+    width: 87%;
+  }
+
+  .thumbnails  img{
+    width: 60px;
+  }
+
+  .car__colors button{
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 444px) {
+  .car__colors button{
+    width: 115px;
+    height: 115px;
+  }
+}
+
+@media (max-width: 430px) {
+  .car__colors button{
+    width: 108px;
+    height: 108px;
+  }
+}
+
+@media (max-width: 410px) {
+  .car__colors button{
+    width: 100px;
+    height: 100px;
+  }
+
+  .car__colors button{
+    width: 100px;
+    height: 100px;
+  }
+
+  .thumbnails{
+    width: 94%;
+  }
+}
 
 
+
+@media (max-width: 385px) {
+  .car__colors button{
+    width: 95px;
+    height: 95px;
+  }
+  .car__colors button{
+    width: 95px;
+    height: 95px;
+  }
+
+  .thumbnails{
+    width: 100%;
+  }
 }
 
 /* Optional: Media Query for screens below 330px */
@@ -516,21 +659,22 @@ a:hover {
     overflow-y: unset;
     min-height: 100%;
     max-height: 100%;
-    padding: 8px;    /* Further reduce padding for very small screens */
+    padding: 17px;   
   }
 
   .request{
     min-width: 100%; /* Ensure full width for very small screens */
     max-width: 100%;
-    padding: 8px; 
+    /* padding: 8px;  */
     overflow-y: unset;
     min-height: 100%;
     max-height: 100%;
+    padding: 17px;  
   }
 
   .car__colors button{
-    width: 105px;
-    height: 105px;
+    width: 95px;
+    height: 95px;
   }
 
   .car__colors {
