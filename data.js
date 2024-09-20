@@ -168,8 +168,8 @@ export const carData = {
                 "https://zeekr-configurator.kz/userdata/section/section_21/image_s.png?1698439951",
               price: 0,
               interiorImageUrl: [
-                "https://zeekr-configurator.kz/userdata/section/section_21/image_52/1698439630_879818117_b.jpg",
-                "https://zeekr-configurator.kz/userdata/section/section_21/image_51/1698439625_850695064_b.jpg",
+                "./image/black-front.jpg",
+                "./image/black-back.jpg",
               ],
             },
             {
@@ -178,8 +178,8 @@ export const carData = {
                 "https://zeekr-configurator.kz/userdata/section/section_22/image_s.png?1698440023",
               price: 50000,
               interiorImageUrl: [
-                "https://zeekr-configurator.kz/userdata/section/section_22/image_90/1698656571_1842488837_b.png",
-                "https://zeekr-configurator.kz/userdata/section/section_22/image_112/1698742974_1156396147_b.png",
+                "./image/white-front.png",
+                "./image/white-back.png",
               ],
             },
           ],
