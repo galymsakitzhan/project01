@@ -28,6 +28,11 @@
 }
 
 
+.selected {
+  border: 2px solid orange;
+}
+
+
 /* element header */
 .header-content{
   display: flex;
@@ -196,6 +201,8 @@ hr {
 }
 
 
+
+
 .names {
   font-size: 30px;
   font-weight: 500;
@@ -238,7 +245,7 @@ hr {
 }
 
 .main_conf:hover{
-  outline: 1px solid orange;
+  outline: 2px solid orange;
 }
 
 .equipment {
@@ -272,11 +279,11 @@ hr {
 
 .car__colors button:hover{
 
-  outline: 1px solid orange;
+  outline: 2px solid orange;
 
 }
 .wheel__button{
-  outline: 1px solid orange;
+  outline: 2px solid orange;
 }
 
 
@@ -303,9 +310,6 @@ hr {
   overflow-y: auto;
 }
 
-.request .trade1{
-  display: none;
-}
 
 .conf__module{
   display: flex;
@@ -450,6 +454,7 @@ a:hover {
 .header-content-img2{
   width: 165px;
 }
+
 /* section 3 = (end) -> right background */
 
 @media (max-width: 1380px) {
