@@ -29,7 +29,7 @@
 
 
 .selected {
-  border: 2px solid orange;
+  outline: 2px solid orange;
 }
 
 
@@ -281,9 +281,6 @@ hr {
 
   outline: 2px solid orange;
 
-}
-.wheel__button{
-  outline: 2px solid orange;
 }
 
 
