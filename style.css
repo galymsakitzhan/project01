@@ -29,7 +29,7 @@
 
 
 .selected {
-  outline: 2px solid orange;
+  border: 2px solid orange;
 }
 
 
@@ -244,9 +244,9 @@ hr {
   background-color: #ccc;
 }
 
-.main_conf:hover{
+/* .main_conf:hover{
   outline: 2px solid orange;
-}
+} */
 
 .equipment {
   width: 100%;
@@ -257,7 +257,19 @@ hr {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  
+  /* Установим прозрачную границу изначально */
+  border: 2px solid transparent;
+  
+  /* Убедимся, что рамка не изменяет размеры */
+  box-sizing: border-box;
 }
+
+.equipment.selected {
+  /* Когда элемент выбран, заменим прозрачную границу на оранжевую */
+  border: 2px solid orange;
+}
+
 
 .tradein {
   font-size: 1.1em;
@@ -279,8 +291,11 @@ hr {
 
 .car__colors button:hover{
 
-  outline: 2px solid orange;
+  border: 2px solid orange;
 
+}
+.wheel__button{
+  border: 2px solid orange;
 }
 
 

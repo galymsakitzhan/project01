@@ -13,6 +13,36 @@ function formatPrice(price) {
   }).format(price);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const modelSelectContainer = document.getElementById(
+    "model-select-container"
+  );
+
+  modelSelectContainer.innerHTML = "";
+
+  
+  carData.models.forEach((model, index) => {
+    const option = document.createElement("option");
+    option.textContent = model.name; // Ensure proper model names
+    option.value = index; // Assign a unique value for each option
+    modelSelectContainer.appendChild(option);
+  });
+
+  // Set the first model as selected by default
+  const selectedModel = carData.models[0];
+  displayConfigurations(selectedModel);
+
+  // Add an event listener for when the user selects a model
+  modelSelectContainer.addEventListener("change", (event) => {
+    const selectedModelIndex = event.target.value;
+    const selectedModel = carData.models[selectedModelIndex];
+
+    // Update the displayed configurations for the selected model
+    displayConfigurations(selectedModel);
+  });
+});
+
+
 // function -> choosing default car
 document.addEventListener("DOMContentLoaded", () => {
   const selectedModel = carData.models[0];
@@ -37,7 +67,7 @@ function createPriceElement(config, withTradeIn = true) {
   return configPrice;
 }
 
-// function -> (displayConfigurations)
+
 function displayConfigurations(model) {
   const equipmentContainer = document.querySelector(".option__car");
   equipmentContainer.innerHTML = "";
@@ -60,7 +90,9 @@ function displayConfigurations(model) {
 
     configDiv.addEventListener("click", () => {
       // Сбрасываем предыдущий выбор
-      const previouslySelected = document.querySelector(".equipment.selected");
+      const previouslySelected = document.querySelector(
+        ".equipment.selected"
+      );
       if (previouslySelected) {
         previouslySelected.classList.remove("selected");
       }
@@ -117,7 +149,7 @@ function displayModifications(config) {
     const col = document.createElement("div");
     col.classList.add("col");
     col.innerHTML = `
-      <div class="title-sm">${mod.title}</div>
+      <div class="title-sm">${mod.title}</div>  
       <div class="text-sm">${mod.text}</div>
     `;
     modificationContainer.appendChild(col);
