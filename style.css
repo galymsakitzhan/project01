@@ -1,4 +1,4 @@
-/* Импорт стилей */
+  /* Импорт стилей */
 @import "./reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
 
@@ -488,6 +488,10 @@ a:hover {
   }
   .tx{
     font-size: 15px;
+  }
+  .sidebar-content{
+    max-height: 50vh;
+    min-height: 0vh;
   }
 }
 
