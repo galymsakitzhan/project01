@@ -46,11 +46,22 @@
 
 .slider-images {
   position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  justify-content: center;
   
 }
 
-#slider-image {
+#combined-slider{
   width: 100%;
+  height: 100%;
+}
+
+#slider-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 7px;
 }
 
 button#prev-image,
@@ -69,12 +80,12 @@ button#next-image {
 }
 
 button#prev-image {
-  left: 10px; /* Расположение кнопки слева */
+  left: 15px; /* Расположение кнопки слева */
   color: rgb(232, 232, 232);
 }
 
 button#next-image {
-  right: 10px; /* Расположение кнопки справа */
+  right: 15px; /* Расположение кнопки справа */
   color: rgb(232, 232, 232);
 }
 
@@ -85,7 +96,7 @@ button#next-image:hover {
 
 .thumbnails {
   position: absolute;
-  bottom: 1 0px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
