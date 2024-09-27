@@ -245,7 +245,7 @@ export const carData = {
           ],
           wheels: [
             {
-              name: "Стандартные диски",
+              name: "22-дюймовые легкосплавные диски",
               imageUrl:
                 "https://zeekr-configurator.kz/userdata/section/section_10/image_s.png?1698847199",
               price: 0,
@@ -341,7 +341,7 @@ export const carData = {
           ],
           wheels: [
             {
-              name: "Флагманские диски",
+              name: "22-дюймовые легкосплавные диски",
               imageUrl:
                 "https://zeekr-configurator.kz/userdata/section/section_20/image_s.png?1698444377",
               price: 0,
