@@ -2,54 +2,79 @@ import { carData } from "./data.js";
 
 let selectedExteriorImages = [];
 let selectedInteriorImages = [];
+let selectedCar = {};
+let formData = {};
 
-// Function to format numbers with thousands separators
 function formatPrice(price) {
   return new Intl.NumberFormat("ru-RU", {
     style: "currency",
     currency: "KZT",
-    minimumFractionDigits: 0, // Не отображаем дробные части
-    maximumFractionDigits: 0, // Не отображаем дробные части
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(price);
 }
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  const modelSelectContainer = document.getElementById(
-    "model-select-container"
+  const modelSelectTrigger = document.getElementById("model-select-trigger");
+  const modelOptionsContainer = document.getElementById(
+    "model-options-container"
   );
 
-  modelSelectContainer.innerHTML = "";
+  // Функция для отображения конфигураций выбранной модели
+  function displayConfigurations(selectedModel) {
+    console.log("Выбрана модель:", selectedModel.name);
+    // Добавь логику для отображения выбранной модели
+  }
 
-  
-  carData.models.forEach((model, index) => {
-    const option = document.createElement("option");
-    option.textContent = model.name; // Ensure proper model names
-    option.value = index; // Assign a unique value for each option
-    modelSelectContainer.appendChild(option);
-  });
+  // Инициализация опций select
+  function initModelOptions() {
+    carData.models.forEach((model, index) => {
+      const optionDiv = document.createElement("div");
+      optionDiv.textContent = model.name;
+      optionDiv.classList.add("model-option");
+      optionDiv.dataset.index = index;
 
-  // Set the first model as selected by default
-  const selectedModel = carData.models[0];
-  displayConfigurations(selectedModel);
+      // Добавляем событие клика на опции
+      optionDiv.addEventListener("click", (event) => {
+        const selectedModelIndex = event.target.dataset.index;
+        const selectedModel = carData.models[selectedModelIndex];
+        displayConfigurations(selectedModel);
 
-  // Add an event listener for when the user selects a model
-  modelSelectContainer.addEventListener("change", (event) => {
-    const selectedModelIndex = event.target.value;
-    const selectedModel = carData.models[selectedModelIndex];
+        // Обновляем текст триггера на выбранную модель
+        modelSelectTrigger.textContent = model.name;
 
-    // Update the displayed configurations for the selected model
-    displayConfigurations(selectedModel);
+        // Закрываем выпадающий список
+        modelOptionsContainer.style.display = "none";
+      });
+
+      modelOptionsContainer.appendChild(optionDiv);
+    });
+  }
+
+  // Инициализация списка моделей
+  initModelOptions();
+
+  // По умолчанию выбираем первую модель
+  const defaultModel = carData.models[0];
+  displayConfigurations(defaultModel);
+  modelSelectTrigger.textContent = defaultModel.name;
+
+  // Логика для открытия/закрытия выпадающего списка
+  modelSelectTrigger.addEventListener("click", () => {
+    const isVisible = modelOptionsContainer.style.display === "block";
+    modelOptionsContainer.style.display = isVisible ? "none" : "block";
   });
 });
 
 
-// function -> choosing default car
+
 document.addEventListener("DOMContentLoaded", () => {
   const selectedModel = carData.models[0];
   displayConfigurations(selectedModel);
 });
 
-// Function to create price element with or without Trade-In
 function createPriceElement(config, withTradeIn = true) {
   const configPrice = document.createElement("div");
   configPrice.classList.add("equipment__price");
@@ -66,7 +91,6 @@ function createPriceElement(config, withTradeIn = true) {
 
   return configPrice;
 }
-
 
 function displayConfigurations(model) {
   const equipmentContainer = document.querySelector(".option__car");
@@ -117,8 +141,6 @@ function displayConfigurations(model) {
   });
 }
 
-
-// function -> (renderCarData)
 function renderCarData(model, selectedConfig) {
   document.querySelector(".names").textContent = model.name;
 
@@ -141,7 +163,6 @@ function renderCarData(model, selectedConfig) {
   )}`;
 }
 
-// function -> (adding modification text about car)
 function displayModifications(config) {
   const modificationContainer = document.querySelector(".modification");
   modificationContainer.innerHTML = "";
@@ -211,8 +232,6 @@ function displayExterior(config) {
   });
 }
 
-
-
 function displayWheels(config) {
   const wheelsContainer = document.querySelector(".wheels .car__colors");
   const nameWheels = document.querySelector(".name__wheels");
@@ -263,7 +282,6 @@ function displayWheels(config) {
     wheelsContainer.appendChild(button);
   });
 }
-
 
 function displayInterior(config) {
   const interiorContainer = document.querySelector(".interior .car__colors");
@@ -318,7 +336,6 @@ function displayInterior(config) {
     interiorContainer.appendChild(button);
   });
 }
-
 
 function updateSlider(imageUrls) {
   let currentIndex = 0;
@@ -398,7 +415,6 @@ function calculateTotalPrice(config) {
   return totalPrice;
 }
 
-// Sidebar and request sections visibility toggle
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const request = document.querySelector(".request");
@@ -432,10 +448,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-// Form submission logic with car data
-let selectedCar = {};
-let formData = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   document
@@ -498,10 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-document
-  .getElementById("customer-form")
-  .addEventListener("submit", function (event) {
+document.getElementById("customer-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
     formData = {
@@ -533,7 +542,6 @@ document
 
     console.log("Full form and car data:", getFullBaseData);
   });
-
 
 document.addEventListener("DOMContentLoaded", function () {
   document

@@ -214,9 +214,6 @@ hr {
   overflow-y: auto;
 }
 
-
-
-
 .names {
   font-size: 30px;
   padding-bottom: 15px;
@@ -259,10 +256,6 @@ hr {
   background-color: #ccc;
 }
 
-/* .main_conf:hover{
-  outline: 2px solid orange;
-} */
-
 .equipment {
   width: 100%;
   padding: 30px;
@@ -288,7 +281,6 @@ hr {
 .rs{
   margin: 0px 0px 7px 0;
 }
-
 
 .price{
   color:#555;
@@ -416,7 +408,7 @@ select {
   padding: 15px 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 7px;
   font-size: 14px;
   box-sizing: border-box;
   background-color: #fff;
@@ -432,12 +424,11 @@ input[type="checkbox"] {
 .input__name{
   display: flex;
   gap: 15px;
-  
 }
 
 input:focus,
 select:focus {
-  border-color: #007BFF;
+  border-color: #39414a;
   outline: none;
 }
 
@@ -457,12 +448,90 @@ a:hover {
   text-decoration: underline;
 }
 
-.header-button{
-  background-color: rgb(255, 172, 19);
-  padding: 10px 15px; 
-  color: aliceblue;
-  border-radius: 3px;
+/* Стили для контейнера select */
+.select-container {
+  position: relative;
 }
+
+.header-button {
+  background-color: #ff7f00;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 130px;
+  justify-content: center;
+}
+
+/* .header-button::after {
+  content: "\2193"; 
+  font-size: 16px;
+  position: relative;
+  right: 10px;
+  pointer-events: none;
+} */
+
+.model-options {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 5px;
+  width: 100%;
+  display: none;
+}
+
+.model-option {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.model-option:hover {
+  background-color: #f0f0f0;
+  color: #ff7f00;
+}
+
+.model-option:last-child {
+  border-bottom: none;
+}
+
+/* Стилизация выпадающего списка (опций) */
+select {
+  background-color: #fff;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  appearance: none; /* Убираем стандартный внешний вид селекта */
+}
+
+select option {
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* Стилизация опций при наведении */
+select option:hover {
+  background-color: #f0f0f0;
+  color: #ff7f00;
+}
+
+/* Убираем стандартные стрелки в IE */
+select::-ms-expand {
+  display: none;
+}
+
+
 
 
 .ts{
@@ -575,7 +644,6 @@ a:hover {
   }
 
 }
-
 
 @media (max-width: 540px) {
   .thumbnails{
@@ -796,8 +864,6 @@ a:hover {
   }
 }
 
-
-
 @media (max-width: 385px) {
   .car__colors button{
     width: 95px;
@@ -828,7 +894,6 @@ a:hover {
   }
 }
 
-/* Optional: Media Query for screens below 330px */
 @media (max-width: 380px) {
   .sidebar {
     min-width: 100%; /* Ensure full width for very small screens */
