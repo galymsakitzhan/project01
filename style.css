@@ -444,33 +444,37 @@ a:hover {
 }
 
 .header-button {
-  background-color: #ff7f00;
+  background-color: orange;
   color: white;
-  padding: 10px;
+  padding: 5px 5px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
-  width: 130px;
+  width: 155px;
   justify-content: center;
+  font-size: 15px;
 }
 
-/* .header-button::after {
-  content: "\2193"; 
-  font-size: 16px;
+.header-button::before {
+  content: "⇋"; 
+  font-size: 18px;
+  font-weight: 900;
   position: relative;
-  right: 10px;
-  pointer-events: none;
-} */
+  right: 5px;
+  display: flex;
+  text-align: center;
+}
 
 .model-options {
   position: absolute;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   z-index: 1000;
   border-radius: 5px;
   width: 100%;
   display: none;
+  margin-top: 5px;
 }
 
 .model-option {
@@ -552,11 +556,31 @@ select::-ms-expand {
 
 /* section 3 = (end) -> right background */
 
-@media (min-height: 715px) {
-  .stepper{
-    margin-top: 20px;
+
+@media (min-height: 700px) {
+  .slider{
+    margin: 20px 0;
   }
 }
+
+@media (min-height: 770px) {
+  .slider{
+    margin: 35px 0;
+  }
+}
+
+@media (min-height: 800px) {
+  .slider{
+    margin: 45px 0;
+  }
+}
+
+@media (min-height: 850px) {
+  .slider{
+    margin: 85px 0;
+  }
+}
+
 
 @media (max-width: 1380px) {
   .ts{
@@ -818,8 +842,9 @@ select::-ms-expand {
     height: 115px;
   }
   .header-button{
-    font-size: 14px;
-    padding: 7px 11px;
+    font-size: 15px;
+    padding: 4px 5px;
+    width: 150px;
   }
 }
 
@@ -830,7 +855,10 @@ select::-ms-expand {
   }
   .header-button{
     font-size: 13px;
-    padding: 7px 11px;
+    padding: 3px 5px;
+  }
+  .model-option {
+    font-size: 13px;
   }
 }
 
@@ -856,11 +884,12 @@ select::-ms-expand {
     width: 125px;
   }
   .header-button{
-    background-color: rgb(255, 172, 19);
-  padding: 7px 10px; 
-  color: aliceblue;
-  border-radius: 3px;
-  font-size: 13px;
+    font-size: 13px;
+    padding: 3px 5px;
+    width: 135px;
+  }
+  .model-option {
+    font-size: 13px;
   }
 }
 
@@ -886,11 +915,12 @@ select::-ms-expand {
     width: 120px;
   }
   .header-button{
-    background-color: rgb(255, 172, 19);
-  padding: 7px 7px; 
-  color: aliceblue;
-  border-radius: 3px;
-  font-size: 13px;
+    font-size: 12px;
+    padding: 2px 4px;
+    width: 125px;
+  }
+  .model-option {
+    font-size: 12px;
   }
 }
 
@@ -951,5 +981,13 @@ select::-ms-expand {
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 12px;
+  }
+  .header-button{
+    font-size: 11px;
+    padding: 1px 4px;
+    width: 117px;
+  }
+  .model-option {
+    font-size: 11px;
   }
 }

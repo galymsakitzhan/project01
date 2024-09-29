@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayConfigurations(selectedModel);
 
         // Update trigger text with the selected model
-        modelSelectTrigger.textContent = model.name;
+        // modelSelectTrigger.textContent = model.name;
 
         // Close the dropdown after selection
         modelOptionsContainer.style.display = "none";
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Display the first model by default
   const defaultModel = carData.models[0];
   displayConfigurations(defaultModel);
-  modelSelectTrigger.textContent = defaultModel.name;
+  // modelSelectTrigger.textContent = defaultModel.name;
 
   // Toggle dropdown visibility on trigger click
   modelSelectTrigger.addEventListener("click", () => {
@@ -556,3 +556,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+
+
+
