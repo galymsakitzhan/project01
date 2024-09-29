@@ -25,8 +25,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
-  min-height: 100vh;
   width: 100%;
 }
 
@@ -46,22 +44,15 @@
 
 .slider-images {
   position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex; 
-  justify-content: center;
-  
 }
 
-#combined-slider{
-  width: 100%;
-  height: 100%;
-}
 
 #slider-image {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 7px;
+  width: 100%; /* Изображение занимает всю ширину контейнера */
+    aspect-ratio: 16 / 9; /* Устанавливаем соотношение сторон 16:9 или другое */
+    object-fit: cover; /* Изображение не будет искажаться, оно обрежется при необходимости */
+    max-width: 100%; /* Для адаптивности */
+    height: auto; /* Высота автоматически подстраивается под ширину */
 }
 
 button#prev-image,
@@ -102,7 +93,7 @@ button#next-image:hover {
   display: flex;
   justify-content: center;
   padding: 5px;
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(239, 239, 239);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: opacity 0.6s ease-in-out
@@ -110,11 +101,10 @@ button#next-image:hover {
 
 .thumbnails img {
   width: 70px;
-  height: auto;
+  height: 45px;
   margin: 0 5px;
   cursor: pointer;
   border-radius: 5px;
-
 }
 
 .thumbnails img:hover {
@@ -173,7 +163,7 @@ button#next-image:hover {
 
 
 .thumbnails img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .slider {
@@ -184,7 +174,7 @@ button#next-image:hover {
 .slider-images {
   position: relative;
   width: 100%;
-  /* height: auto; */
+  height: auto;
 }
 
 
@@ -562,16 +552,18 @@ select::-ms-expand {
 
 /* section 3 = (end) -> right background */
 
+@media (min-height: 715px) {
+  .stepper{
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 1380px) {
   .ts{
     font-size: 13px;
   }
   .tx{
     font-size: 15px;
-  }
-  .sidebar-content{
-    max-height: 50vh;
-    min-height: 0vh;
   }
 }
 
@@ -611,7 +603,6 @@ select::-ms-expand {
     display: none;
   }
 
-
   .sidebar{
     min-width: 100%;
     overflow-y: unset;
@@ -625,10 +616,9 @@ select::-ms-expand {
     max-height: 100%;
   }
 
-
   .thumbnails {
     position: relative;
-    bottom: 0px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -637,12 +627,22 @@ select::-ms-expand {
     background-color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: opacity 0.6s ease-in-out;
-    width: 75%;
+    width: 100%;
     border-radius: 0px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
 
+  .slider {
+    display: flex;
+    justify-content: center; /* Ensures the slider stays centered horizontally */
+    align-items: center;
+    margin: 0 auto; /* Centers the slider container */
+  }
+  #slider-image{
+    width: 100%; /* Ensures the slider spans the full width of its container */
+        max-width: 100%; /* Keeps the image from overflowing */
+  }
 }
 
 @media (max-width: 540px) {

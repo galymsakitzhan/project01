@@ -22,13 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "model-options-container"
   );
 
-  // Функция для отображения конфигураций выбранной модели
-  function displayConfigurations(selectedModel) {
-    console.log("Выбрана модель:", selectedModel.name);
-    // Добавь логику для отображения выбранной модели
-  }
-
-  // Инициализация опций select
+  // Function to initialize model options dynamically
   function initModelOptions() {
     carData.models.forEach((model, index) => {
       const optionDiv = document.createElement("div");
@@ -36,37 +30,39 @@ document.addEventListener("DOMContentLoaded", () => {
       optionDiv.classList.add("model-option");
       optionDiv.dataset.index = index;
 
-      // Добавляем событие клика на опции
+      // Add click event to each option
       optionDiv.addEventListener("click", (event) => {
         const selectedModelIndex = event.target.dataset.index;
         const selectedModel = carData.models[selectedModelIndex];
         displayConfigurations(selectedModel);
 
-        // Обновляем текст триггера на выбранную модель
+        // Update trigger text with the selected model
         modelSelectTrigger.textContent = model.name;
 
-        // Закрываем выпадающий список
+        // Close the dropdown after selection
         modelOptionsContainer.style.display = "none";
       });
 
+      // Append each option to the container
       modelOptionsContainer.appendChild(optionDiv);
     });
   }
 
-  // Инициализация списка моделей
+  // Initialize the model options on page load
   initModelOptions();
 
-  // По умолчанию выбираем первую модель
+  // Display the first model by default
   const defaultModel = carData.models[0];
   displayConfigurations(defaultModel);
   modelSelectTrigger.textContent = defaultModel.name;
 
-  // Логика для открытия/закрытия выпадающего списка
+  // Toggle dropdown visibility on trigger click
   modelSelectTrigger.addEventListener("click", () => {
     const isVisible = modelOptionsContainer.style.display === "block";
     modelOptionsContainer.style.display = isVisible ? "none" : "block";
   });
 });
+
 
 
 
