@@ -101,7 +101,8 @@ button#next-image:hover {
 
 .thumbnails img {
   width: 70px;
-  height: 45px;
+  aspect-ratio: 16 / 9; /* Устанавливаем соотношение сторон 16:9 или другое */
+    object-fit: cover; /* Изображение не будет искажаться, оно обрежется при необходимости */
   margin: 0 5px;
   cursor: pointer;
   border-radius: 5px;
