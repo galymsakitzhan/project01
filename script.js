@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Display the first model by default
   const defaultModel = carData.models[0];
   displayConfigurations(defaultModel);
-  // modelSelectTrigger.textContent = defaultModel.name;
 
   // Toggle dropdown visibility on trigger click
   modelSelectTrigger.addEventListener("click", () => {
@@ -62,6 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
     modelOptionsContainer.style.display = isVisible ? "none" : "block";
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modelOptions = document.querySelectorAll(".model-option");
+
+  modelOptions.forEach((option) => {
+    option.addEventListener("click", (event) => {
+      // Удаляем класс "selected" с всех опций
+      modelOptions.forEach((opt) => opt.classList.remove("selected1"));
+
+      // Добавляем класс "selected" к выбранной опции
+      event.currentTarget.classList.add("selected1");
+    });
+  });
+});
+
 
 
 

@@ -470,21 +470,23 @@ a:hover {
 .model-options {
   position: absolute;
   background-color: white;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  box-shadow: #0e1e251f 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   z-index: 1000;
-  border-radius: 3px;
+  border-radius: 5px;
   width: 100%;
   display: none;
   margin-top: 5px;
 }
 
 .model-option {
-  padding: 10px 5px;
+  padding: 5px 5px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
+  margin: 2px;
+  /* border-radius: 3px; */
 }
 
-.model-option:hover {
+.model-option.selected1 {
   color: #ff7f00;
 }
 
