@@ -854,11 +854,11 @@ select::-ms-expand {
     height: 108px;
   }
   .header-button{
-    font-size: 13px;
-    padding: 3px 5px;
+    font-size: 12px;
+    padding: 5px 5px;
   }
   .model-option {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
@@ -884,8 +884,8 @@ select::-ms-expand {
     width: 125px;
   }
   .header-button{
-    font-size: 13px;
-    padding: 3px 5px;
+    font-size: 11px;
+    padding: 1px 5px;
     width: 135px;
   }
   .model-option {
