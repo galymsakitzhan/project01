@@ -14,8 +14,6 @@ function formatPrice(price) {
   }).format(price);
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const modelSelectTrigger = document.getElementById("model-select-trigger");
   const modelOptionsContainer = document.getElementById(
@@ -75,10 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const selectedModel = carData.models[0];
@@ -486,37 +480,32 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".price__interior").textContent;
       const totalPrice = document.querySelector(".total-price").textContent;
 
-      selectedCar = {
-        model: selectedModel,
-        model_price: selectedModelPrice,
-        configuration: selectedConfiguration,
-        exteriorColor: selectedExteriorColor,
-        exteriorColorPrice: exteriorColorPrice,
-        wheels: selectedWheels,
-        wheels_price: selectedWheelsPrice,
-        interior: selectedInterior,
-        interior_price: selectedInteriorPrice,
-        totalPrice: totalPrice,
-      };
+selectedCar = {
+  model: selectedModel,
+  model_price: Number(selectedModelPrice.replace(/\D/g, "")), // Удаление всех символов кроме цифр
+  configuration: selectedConfiguration,
+  exteriorColor: selectedExteriorColor,
+  exteriorColorPrice: Number(exteriorColorPrice.replace(/\D/g, "")),
+  wheels: selectedWheels,
+  wheels_price: Number(selectedWheelsPrice.replace(/\D/g, "")),
+  interior: selectedInterior,
+  interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
+  totalPrice: Number(totalPrice.replace(/\D/g, "")),
+};
+
 
       // Отправляем данные модели без блока "Trade-In"
       document.querySelector(".model__").textContent = selectedCar.model;
-      document.querySelector(".model__price").textContent =
-        selectedCar.model_price;
-      document.querySelector(".configuration__").textContent =
-        selectedCar.configuration;
-      document.querySelector(".exteriorColor__").textContent =
-        selectedCar.exteriorColor;
-      document.querySelector(".exteriorColor__price").textContent =
-        selectedCar.exteriorColorPrice;
+      document.querySelector(".model__price").textContent = formatPrice(selectedCar.model_price);
+      document.querySelector(".configuration__").textContent =selectedCar.configuration;
+      document.querySelector(".exteriorColor__").textContent =selectedCar.exteriorColor;
+      document.querySelector(".exteriorColor__price").textContent = formatPrice(selectedCar.exteriorColorPrice);
       document.querySelector(".wheels__").textContent = selectedCar.wheels;
-      document.querySelector(".wheels__price").textContent =
-        selectedCar.wheels_price;
+      document.querySelector(".wheels__price").textContent = formatPrice(selectedCar.wheels_price);
       document.querySelector(".interior__").textContent = selectedCar.interior;
-      document.querySelector(".interior__price").textContent =
-        selectedCar.interior_price;
-      document.querySelector(".totalPrice__").textContent =
-        selectedCar.totalPrice;
+      document.querySelector(".interior__price").textContent = formatPrice(selectedCar.interior_price);
+      document.querySelector(".totalPrice__").textContent = formatPrice(
+        selectedCar.totalPrice);
     });
 });
 
@@ -570,6 +559,42 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+document.querySelector("#phone").onkeydown = function (e) {
+  inputphone(e, document.querySelector("#phone"));
+};
+
+function inputphone(e, phone) {
+  function stop(evt) {
+    evt.preventDefault();
+  }
+
+  let key = e.key,
+    v = phone.value;
+
+  // Allow only digits and the Backspace key
+  if (!/[0-9]/.test(key) && key !== "Backspace") {
+    stop(e);
+    return;
+  }
+
+
+  if (key !== "Backspace") {
+    if (v.length < 4 || v === "") {
+      phone.value = "+7 (";
+    }
+    if (v.length === 7) {
+      phone.value = v + ") ";
+    }
+    if (v.length === 12) {
+      phone.value = v + "-";
+    }
+    if (v.length === 15) {
+      phone.value = v + "-";
+    }
+  }
+}
+
 
 
 

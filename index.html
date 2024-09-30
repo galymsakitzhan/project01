@@ -178,14 +178,14 @@
 
             <form id="customer-form">
                 <div class="input__name">
-                  <input type="text" id="first-name" name="first-name" placeholder="Имя*" required>
-                  <input type="text" id="last-name" name="last-name" placeholder="Фамилия">
+                  <input type="text" id="first-name" name="first-name" placeholder="Имя*" required />
+                  <input type="text" id="last-name" name="last-name" placeholder="Фамилия" required />
                 </div>
               
-                <input type="tel" id="phone" name="phone" placeholder="Телефон*" required>
-                <input type="email" id="email" name="email" placeholder="E-mail">
+                <input type="tel" name="phone" maxlength="18" placeholder=" Телефон*"  id="phone" required />
+                <input type="email" id="email" name="email" placeholder="E-mail" required />
               
-                <select id="dealer" name="dealer" class="dealer">
+                <select id="dealer" name="dealer" class="dealer" required>
                   <option value="dealer0">- Выберите дилера -</option>
                   <option value="Астана">Астана</option>
                   <option value="Алматы">Алматы</option>
