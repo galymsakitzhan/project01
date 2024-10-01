@@ -1,6 +1,7 @@
   /* Импорт стилей */
 @import "./reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 
 * {
@@ -558,6 +559,70 @@ select::-ms-expand {
   width: 165px;
 }
 
+.error {
+  border: 2px solid orange; /* Оранжевая рамка для ошибочных полей */
+}
+
+
+.button{
+  padding: 13px 10px;
+  width: 100%; 
+  border-radius:5px; 
+  color: #fff; 
+  margin: 20px 0;
+  border: none;
+  outline: none;
+  background: #252525;
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.check-box{
+  box-shadow: 0 0 12px -2px rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  background-color: orange;
+}
+
+.check-box svg{
+  width: 30px;
+  margin: 8px;
+}
+
+.svg path{
+  stroke-width: 3;
+  stroke: #fff;
+  stroke-dasharray: 34;
+  stroke-dashoffset: 34;
+  stroke-linecap: round;
+}
+
+.active{
+  background: #2c2c2c;
+  transition: 1s;
+}
+
+.active .check-box{
+  right: 0;
+  opacity: 1;
+  transition: 1s;
+}
+
+.active p{
+  margin-right: 55px;
+  transition: 1s;
+}
+
+.active .svg path{
+  stroke-dashoffset: 0;
+  transition: 1s;
+  transition-delay: 1s;
+}
 /* section 3 = (end) -> right background */
 
 
@@ -567,23 +632,6 @@ select::-ms-expand {
   }
 }
 
-@media (min-height: 770px) {
-  .slider{
-    margin: 35px 0;
-  }
-}
-
-@media (min-height: 800px) {
-  .slider{
-    margin: 45px 0;
-  }
-}
-
-@media (min-height: 850px) {
-  .slider{
-    margin: 85px 0;
-  }
-}
 
 
 @media (max-width: 1380px) {

@@ -509,7 +509,9 @@ selectedCar = {
     });
 });
 
-document.getElementById("customer-form").addEventListener("submit", function (event) {
+document
+  .getElementById("customer-form")
+  .addEventListener("submit", function (event) {
     event.preventDefault();
 
     formData = {
@@ -526,7 +528,7 @@ document.getElementById("customer-form").addEventListener("submit", function (ev
       lastName: formData.lastName,
       phone: formData.phone,
       email: formData.email,
-      dealer:formData.dealer,
+      dealer: formData.dealer,
       model: selectedCar.model,
       model_price: formatPrice(selectedCar.model_price),
       configuration: selectedCar.configuration,
@@ -595,6 +597,94 @@ function inputphone(e, phone) {
   }
 }
 
+const submitButton = document.querySelector("#submitButton");
+const btnText = document.querySelector("#btnText");
+const form = document.querySelector("#customer-form");
+const errorMessage = document.querySelector("#error-message");
+const checkboxErrorMessage = document.querySelector("#checkbox-error-message");
+
+submitButton.onclick = (event) => {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  // Reset error messages and previous styles
+  errorMessage.style.display = "none";
+  errorMessage.innerHTML = "";
+  checkboxErrorMessage.style.display = "none";
+  checkboxErrorMessage.innerHTML = "";
+
+  // Validate each field
+  let valid = true;
+
+  // Validate first name
+  const firstName = document.getElementById("first-name");
+  if (!firstName.value) {
+    valid = false;
+    firstName.style.borderColor = "red"; // Highlight the field in red
+  } else {
+    firstName.style.borderColor = ""; // Reset styles
+  }
+
+  // Validate last name
+  const lastName = document.getElementById("last-name");
+  if (!lastName.value) {
+    valid = false;
+    lastName.style.borderColor = "red"; // Highlight the field in red
+  } else {
+    lastName.style.borderColor = ""; // Reset styles
+  }
+
+  // Validate phone
+  const phone = document.getElementById("phone");
+  if (!phone.value) {
+    valid = false;
+    phone.style.borderColor = "red"; // Highlight the field in red
+  } else {
+    phone.style.borderColor = ""; // Reset styles
+  }
+
+
+  // Validate consent checkbox
+  const consent = document.querySelector("#consent");
+  if (!consent.checked) {
+    valid = false;
+    checkboxErrorMessage.innerHTML =
+      "Необходимо подтвердить согласие на обработку данных";
+    checkboxErrorMessage.style.display = "block"; // Show error message
+  }
+
+  // If all fields are valid
+  if (valid) {
+    btnText.innerHTML = "Отправлено"; // Change button text to "Отправлено"
+    submitButton.classList.add("active");
+
+    // Capture form data
+    formData = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      phone: phone.value,
+      email: email.value,
+      dealer: document.getElementById("dealer").value,
+      model: selectedCar.model,
+      model_price: formatPrice(selectedCar.model_price),
+      configuration: selectedCar.configuration,
+      exteriorColor: selectedCar.exteriorColor,
+      exteriorColorPrice: formatPrice(selectedCar.exteriorColorPrice),
+      wheels: selectedCar.wheels,
+      wheels_price: formatPrice(selectedCar.wheels_price),
+      interior: selectedCar.interior,
+      interior_price: formatPrice(selectedCar.interior_price),
+      totalPrice: formatPrice(selectedCar.totalPrice),
+    };
+
+    // Log the form data to the console
+    console.log("Form data submitted:", formData);
+
+    // Optionally submit the form if desired
+    // form.submit();
+  } else {
+    console.log("Form validation failed");
+  }
+};
 
 
 

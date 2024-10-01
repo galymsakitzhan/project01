@@ -174,37 +174,35 @@
 
 
             <h3 class="form-h3">Заполните заявку</h3>
-
-
             <form id="customer-form">
                 <div class="input__name">
-                  <input type="text" id="first-name" name="first-name" placeholder="Имя*" required />
-                  <input type="text" id="last-name" name="last-name" placeholder="Фамилия" required />
+                    <input type="text" id="first-name" name="first-name" placeholder="Имя*" />
+                    <input type="text" id="last-name" name="last-name" placeholder="Фамилия*" />
                 </div>
-              
-                <input type="tel" name="phone" maxlength="18" placeholder=" Телефон*"  id="phone" required />
-                <input type="email" id="email" name="email" placeholder="E-mail" required />
-              
-                <select id="dealer" name="dealer" class="dealer" required>
-                  <option value="dealer0">- Выберите дилера -</option>
-                  <option value="Астана">Астана</option>
-                  <option value="Алматы">Алматы</option>
-                  <option value="Караганды">Караганды</option>
-                  <option value="Актобе">Актобе</option>
-                  <option value="Шымкент">Шымкент</option>
-                  <option value="Кызылорда">Кызылорда</option>
-                  <option value="Павлодар">Павлодар</option>
-                  <option value="Семей">Семей</option>
+        
+                <input type="tel" name="phone" maxlength="18" placeholder="Телефон*" id="phone" />
+                <input type="email" id="email" name="email" placeholder="E-mail*" />
+        
+                <select id="dealer" name="dealer" class="dealer">
+                    <option value="">- Выберите дилера -</option>
+                    <option value="Астана">Астана</option>
+                    <option value="Алматы">Алматы</option>
+                    <option value="Караганды">Караганды</option>
+                    <option value="Актобе">Актобе</option>
+                    <option value="Шымкент">Шымкент</option>
+                    <option value="Кызылорда">Кызылорда</option>
+                    <option value="Павлодар">Павлодар</option>
+                    <option value="Семей">Семей</option>
                 </select>
-              
+        
                 <div style="display: flex; align-items: center;">
-                    <input type="checkbox" id="consent" name="consent" required style="width:25px;height:32px;">
+                    <input type="checkbox" id="consent" name="consent">
                     <label for="consent" style="margin-left: 10px;">
-                      Настоящим подтверждаю, что ознакомлен и согласен с условиями 
-                      <a href="#" onclick="toggleText()" style="color: orange;">Согласие о предоставлении персональных данных</a>
+                        Настоящим подтверждаю, что ознакомлен и согласен с условиями 
+                        <a href="#" onclick="toggleText()" style="color: orange;">Согласие о предоставлении персональных данных</a>
                     </label>
-                  </div>
-                  <div id="text" style="display: none; font-size: 12px;">
+                </div>
+                <div id="text" style="display: none; font-size: 13px;">
                     <p>
 						Настоящим, я даю свое согласие ТОО «Orbis Auto» на обработку моих персональных данных: сбор, запись, систематизацию, накопление, хранение, уточнение, обновление, изменение, извлечение, использование в интересах ТОО «Orbis Auto», в момент подписания мной настоящего согласия и факт моего ознакомления с которым я подтверждаю подписанием настоящего согласия, обезличивание, блокирование, удаление, уничтожение, в том числе с использованием средств автоматизации (в том числе, включение в единую информационную систему, исключая объединение баз, содержащих персональные данные, обработка которых осуществляется в целях, несовместимых между собой) или без использования таких средств, следующих моих персональных данных: фамилия, имя, отчество, данные об удостоверении личности, пол, дата рождения; адрес места жительства (адрес доставки корреспонденции); контактный телефон (домашний, мобильный); адрес электронной почты; сведения о приобретенном автомобиле марки Zeekr, данные паспорта технического средства, сведения о сервисном обслуживании, история контактов с клиентом, марка/модель/год выпуска предыдущего автомобиля, условия покупки предыдущего автомобиля (новый или подержанный). 
                     </p>
@@ -213,9 +211,28 @@
 						Согласие дается сроком на 10 (десять) лет с момента подписания настоящего Согласия. Настоящее Согласие может быть отозвано мной путем направления письменного уведомления ТОО «Orbis Auto».
 						</p>
                 </div>
+                <p id="checkbox-error-message" style="color: red; display: none; font-size: 11px;"></p>
+        
+                <button type="submit" class="button" id="submitButton">
+                    <p id="btnText">Отправить</p>
+                    <div class="check-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" class="svg">
+                            <path fill="transparent" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                </button>
+        
+                <p id="error-message" style="color: red; display: none;"></p> <!-- Сообщение об ошибке -->
+            </form>
+            
+            
+            
               
-                <button type="submit" style="background-color: #555;color: #fff;padding: 15px 10px; border-radius: 5px; width: 100%; margin: 15px auto;">Отправить</button>
-              </form>
+              <!-- Сообщение об успешной отправке -->
+              <div id="successMessage" style="display: none; text-align: center; font-size: 18px; color: green;">
+                Запрос успешно отправлен!
+              </div>
+              
         </section>
         
     </main>
