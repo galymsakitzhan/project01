@@ -274,6 +274,10 @@ hr {
   border: 2px solid orange;
 }
 
+.packet-main{
+  cursor: pointer;
+}
+
 .rs{
   margin: 0px 0px 7px 0;
 }
@@ -338,6 +342,7 @@ hr {
   justify-content: space-between;
   padding: 7px 15px;
 }
+
 
 .conf__price{
   background-color: #d7d7d783;

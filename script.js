@@ -111,6 +111,7 @@ function renderCarData(model, selectedConfig) {
 
   const totalPrice = calculateTotalPrice(selectedConfig);
   document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+  displayPacket(selectedConfig, model.name);
 }
 
 // Создание элемента цены
@@ -147,7 +148,6 @@ function displayModifications(config) {
 }
 
 // Отображение экстерьера
-// Обновление выбранного экстерьера
 function displayExterior(config) {
   const exteriorContainer = document.querySelector(".exterior .car__colors");
   const nameExterior = document.querySelector(".name__exterior");
@@ -172,7 +172,7 @@ function displayExterior(config) {
 
     button.addEventListener("click", () => {
       // Убираем статус выбора у предыдущего элемента
-      config.exterior.forEach((exterior) => exterior.isSelected = false);
+      config.exterior.forEach((exterior) => (exterior.isSelected = false));
 
       // Устанавливаем новый выбранный экстерьер
       color.isSelected = true;
@@ -188,16 +188,18 @@ function displayExterior(config) {
 
       // Пересчитываем итоговую цену
       const totalPrice = calculateTotalPrice(config);
-      document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+      document.querySelector(".total-price").textContent =
+        formatPrice(totalPrice);
+
+      // Обновляем слайдер с новыми изображениями
+      updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
     });
 
     exteriorContainer.appendChild(button);
   });
 }
 
-
 // Отображение колес
-// Обновление выбранных колес
 function displayWheels(config) {
   const wheelsContainer = document.querySelector(".wheels .car__colors");
   const nameWheels = document.querySelector(".name__wheels");
@@ -220,7 +222,7 @@ function displayWheels(config) {
 
     button.addEventListener("click", () => {
       // Снимаем отметку с предыдущего выбранного колеса
-      config.wheels.forEach((wheel) => wheel.isSelected = false);
+      config.wheels.forEach((wheel) => (wheel.isSelected = false));
 
       // Устанавливаем новое выбранное колесо
       wheel.isSelected = true;
@@ -235,17 +237,18 @@ function displayWheels(config) {
 
       // Пересчет итоговой цены
       const totalPrice = calculateTotalPrice(config);
-      document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+      document.querySelector(".total-price").textContent =
+        formatPrice(totalPrice);
+
+      // Обновляем слайдер с новыми изображениями
+      updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
     });
 
     wheelsContainer.appendChild(button);
   });
 }
 
-// Обновление интерьера аналогично
-
 // Отображение интерьера
-// Обновление выбранного интерьера
 function displayInterior(config) {
   const interiorContainer = document.querySelector(".interior .car__colors");
   const nameInterior = document.querySelector(".name__interior");
@@ -270,7 +273,7 @@ function displayInterior(config) {
 
     button.addEventListener("click", () => {
       // Снимаем статус выбора у предыдущего интерьера
-      config.interior.forEach((interior) => interior.isSelected = false);
+      config.interior.forEach((interior) => (interior.isSelected = false));
 
       // Устанавливаем новый выбранный интерьер
       interior.isSelected = true;
@@ -286,14 +289,66 @@ function displayInterior(config) {
 
       // Пересчитываем итоговую цену
       const totalPrice = calculateTotalPrice(config);
-      document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+      document.querySelector(".total-price").textContent =
+        formatPrice(totalPrice);
+
+      // Обновляем слайдер с новыми изображениями
+      updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
     });
 
     interiorContainer.appendChild(button);
   });
 }
 
+// Функция для отображения пакета
+function displayPacket(config, modelName) {
+  const packetContainer = document.querySelector(".packet-main");
+  const namePacket = document.querySelector(".name__packet");
+  const infoPacket = document.querySelector(".info__packet");
+  const pricePacket = document.querySelector(".price__packet");
+  const packetImage = document.querySelector(".packet img");
 
+  if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
+    const packet = config.packet[0];
+    namePacket.textContent = packet.name;
+    infoPacket.textContent = packet.info;
+    pricePacket.textContent = formatPrice(packet.price);
+    packetImage.src = packet.imagePacketUrl;
+    document.querySelector(".packet").style.display = "block";
+
+    // Для Премиум AWD выбираем пакет вручную и пересчитываем цену
+    if (config.name === "Премиум AWD") {
+      packetContainer.addEventListener("click", () => {
+        if (packetContainer.classList.contains("selected")) {
+          packetContainer.classList.remove("selected");
+          packetContainer.style.border = "none";
+          updateTotalPriceWithoutPacket(config); // Обновляем цену без пакета
+        } else {
+          document.querySelectorAll(".packet-main").forEach((elem) => {
+            elem.classList.remove("selected");
+            elem.style.border = "none";
+          });
+          packetContainer.classList.add("selected");
+          packetContainer.style.border = "2px solid orange";
+          updateTotalPriceWithPacket(config, packet.price); // Обновляем цену с пакетом
+        }
+      });
+    }
+
+    // Для Флагман AWD пакет автоматически выбран и пересчет не отключается
+    if (config.name === "Флагман AWD") {
+      packetContainer.classList.add("selected");
+      packetContainer.style.border = "2px solid orange";
+      updateTotalPriceWithPacket(config, packet.price); // Цена с пакетом
+    }
+  } else {
+    document.querySelector(".packet").style.display = "none";
+  }
+}
+
+
+
+// Обновление слайдера
 function updateSlider(imageUrls) {
   let currentIndex = 0;
   const sliderImage = document.querySelector("#slider-image");
@@ -363,31 +418,27 @@ function updateSlider(imageUrls) {
 function calculateTotalPrice(config) {
   let totalPrice = config.price;
 
-  // Получаем текущий выбранный экстерьер
   const selectedExterior = config.exterior.find(
     (exterior) => exterior.isSelected
   );
   if (selectedExterior) {
-    totalPrice += selectedExterior.price; // Добавляем цену экстерьера
+    totalPrice += selectedExterior.price;
   }
 
-  // Получаем текущие выбранные колеса
   const selectedWheel = config.wheels.find((wheel) => wheel.isSelected);
   if (selectedWheel) {
-    totalPrice += selectedWheel.price; // Добавляем цену колес
+    totalPrice += selectedWheel.price;
   }
 
-  // Получаем текущий выбранный интерьер
   const selectedInterior = config.interior.find(
     (interior) => interior.isSelected
   );
   if (selectedInterior) {
-    totalPrice += selectedInterior.price || 0; // Добавляем цену интерьера, если она есть
+    totalPrice += selectedInterior.price || 0;
   }
 
   return totalPrice;
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
@@ -449,6 +500,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".name__interior").textContent;
       const selectedInteriorPrice =
         document.querySelector(".price__interior").textContent;
+      const selectedPacket =
+        document.querySelector(".name__packet").textContent;
+      const selectedPacketPrice =
+        document.querySelector(".price__packet").textContent;
       const totalPrice = document.querySelector(".total-price").textContent;
 
       selectedCar = {
@@ -461,6 +516,8 @@ document.addEventListener("DOMContentLoaded", () => {
         wheels_price: Number(selectedWheelsPrice.replace(/\D/g, "")),
         interior: selectedInterior,
         interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
+        packet: selectedPacket,
+        packet_price: Number(selectedPacketPrice.replace(/\D/g, "")),
         totalPrice: Number(totalPrice.replace(/\D/g, "")),
       };
 
@@ -484,6 +541,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".interior__price").textContent = formatPrice(
         selectedCar.interior_price
       );
+      if (selectedCar.model == "Zeekr X"){
+        document.querySelector(".packet__").textContent = selectedCar.packet;
+      document.querySelector(".packet__price").textContent = formatPrice(selectedCar.interior_price);
+      }else{
+      }
+      
+
       document.querySelector(".totalPrice__").textContent = formatPrice(
         selectedCar.totalPrice
       );
