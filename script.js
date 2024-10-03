@@ -308,43 +308,69 @@ function displayPacket(config, modelName) {
   const pricePacket = document.querySelector(".price__packet");
   const packetImage = document.querySelector(".packet img");
 
+
+  document.querySelector(".packet").style.display = "none";
+
   if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
     const packet = config.packet[0];
     namePacket.textContent = packet.name;
     infoPacket.textContent = packet.info;
     pricePacket.textContent = formatPrice(packet.price);
     packetImage.src = packet.imagePacketUrl;
+
+    // Show packet details initially
     document.querySelector(".packet").style.display = "block";
 
-    // Для Премиум AWD выбираем пакет вручную и пересчитываем цену
-    if (config.name === "Премиум AWD") {
-      packetContainer.addEventListener("click", () => {
-        if (packetContainer.classList.contains("selected")) {
-          packetContainer.classList.remove("selected");
-          packetContainer.style.border = "none";
-          updateTotalPriceWithoutPacket(config); // Обновляем цену без пакета
-        } else {
-          document.querySelectorAll(".packet-main").forEach((elem) => {
-            elem.classList.remove("selected");
-            elem.style.border = "none";
-          });
-          packetContainer.classList.add("selected");
-          packetContainer.style.border = "2px solid orange";
-          updateTotalPriceWithPacket(config, packet.price); // Обновляем цену с пакетом
-        }
-      });
-    }
+    // Clear previous selection
+    packetContainer.classList.remove("selected");
+    packetContainer.style.border = "none";
 
-    // Для Флагман AWD пакет автоматически выбран и пересчет не отключается
+
     if (config.name === "Флагман AWD") {
       packetContainer.classList.add("selected");
       packetContainer.style.border = "2px solid orange";
-      updateTotalPriceWithPacket(config, packet.price); // Цена с пакетом
+      calculateTotalPrice(config);
+
+      packetContainer.addEventListener("click", () => {
+        packetContainer.classList.add("selected");
+        packetContainer.style.border = "2px solid orange";
+        calculateTotalPrice(config);
+      });
     }
-  } else {
-    document.querySelector(".packet").style.display = "none";
+
+if (config.name === "Премиум AWD") {
+  packetContainer.addEventListener("click", () => {
+    const isSelected = packetContainer.classList.contains("selected");
+
+    // Remove the selected class and border from all packet containers
+    document.querySelectorAll(".packet-main").forEach((elem) => {
+      elem.classList.remove("selected");
+      elem.style.border = "none";
+    });
+
+    // If the packet wasn't already selected, select it
+    if (!isSelected) {
+      packetContainer.classList.add("selected");
+      packetContainer.style.border = "2px solid orange";
+    } else {
+      // If it was selected, deselect it
+      packetContainer.classList.remove("selected");
+      packetContainer.style.border = "none";
+    }
+
+    // Calculate the total price
+    calculateTotalPrice(config);
+  });
+}
   }
 }
+
+
+
+
+
+
+
 
 
 
@@ -415,9 +441,11 @@ function updateSlider(imageUrls) {
 }
 
 // Вычисление итоговой цены
+// Функция для вычисления итоговой цены с учетом всех опций и пакета
 function calculateTotalPrice(config) {
   let totalPrice = config.price;
 
+  // Учитываем выбранный экстерьер
   const selectedExterior = config.exterior.find(
     (exterior) => exterior.isSelected
   );
@@ -425,11 +453,13 @@ function calculateTotalPrice(config) {
     totalPrice += selectedExterior.price;
   }
 
+  // Учитываем выбранные колеса
   const selectedWheel = config.wheels.find((wheel) => wheel.isSelected);
   if (selectedWheel) {
     totalPrice += selectedWheel.price;
   }
 
+  // Учитываем выбранный интерьер
   const selectedInterior = config.interior.find(
     (interior) => interior.isSelected
   );
@@ -437,8 +467,22 @@ function calculateTotalPrice(config) {
     totalPrice += selectedInterior.price || 0;
   }
 
+  // Учитываем пакет, если он выбран
+  const packetContainer = document.querySelector(".packet-main");
+  const selectedPacket = packetContainer?.classList.contains("selected");
+
+  if (config.packet && config.packet.length > 0 && selectedPacket) {
+    const packet = config.packet[0]; // Предполагаем, что есть только один пакет
+    totalPrice += packet.price; // Добавляем цену пакета
+  }
+
+  // Обновляем отображение итоговой цены
+  document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+
   return totalPrice;
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
@@ -541,12 +585,15 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".interior__price").textContent = formatPrice(
         selectedCar.interior_price
       );
-      if (selectedCar.model == "Zeekr X"){
+
+      // Update the packet price display for Zeekr X
+      if (selectedCar.model === "Zeekr X") {
         document.querySelector(".packet__").textContent = selectedCar.packet;
-      document.querySelector(".packet__price").textContent = formatPrice(selectedCar.interior_price);
-      }else{
+        document.querySelector(".packet__price").textContent = formatPrice(
+          selectedCar.packet_price // Use the correct packet price
+        );
+      } else {
       }
-      
 
       document.querySelector(".totalPrice__").textContent = formatPrice(
         selectedCar.totalPrice

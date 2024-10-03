@@ -628,14 +628,24 @@ select::-ms-expand {
   transition: 1s;
   transition-delay: 1s;
 }
+
+.name__packet{
+  font-size:21px;
+}
+.info__packet{
+  font-size: 14px;
+}
+.price__packet{
+  font-size: 17px;
+}
 /* section 3 = (end) -> right background */
 
 
-@media (min-height: 700px) {
+/* @media (min-height: 700px) {
   .slider{
     margin: 20px 0;
   }
-}
+} */
 
 
 
@@ -947,6 +957,16 @@ select::-ms-expand {
   }
   .model-option {
     font-size: 13px;
+  }
+
+  .name__packet{
+    font-size:20px;
+  }
+  .info__packet{
+    font-size: 12px;
+  }
+  .price__packet{
+    font-size: 14px;
   }
 }
 
