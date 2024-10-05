@@ -312,7 +312,8 @@ function displayPacket(config, modelName) {
   // Скрываем секцию пакетов, если их нет
   document.querySelector(".packet").style.display = "none";
 
-  if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
+  // Проверяем, есть ли пакеты и соответствующая модель
+  if (config.packet && config.packet.length > 0) {
     const packet = config.packet[0];
     namePacket.textContent = packet.name;
     infoPacket.textContent = packet.info;
@@ -322,18 +323,34 @@ function displayPacket(config, modelName) {
     // Отображаем секцию пакетов
     document.querySelector(".packet").style.display = "block";
 
-    // Обработчик события переключения
-    packetToggle.addEventListener("change", () => {
-      if (packetToggle.checked) {
-        packetContainer.classList.add("selected");
-      } else {
-        packetContainer.classList.remove("selected");
-      }
-      // Пересчитываем общую цену
-      calculateTotalPrice(config);
-    });
+    // Логика для Zeekr X Премиум AWD: показываем чекбокс для выбора пакета
+    if (modelName === "Zeekr X" && config.name != "Флагман AWD") {
+      packetToggle.style.display = "block"; // Показываем чекбокс
+
+      // Обработчик события переключения чекбокса
+      packetToggle.addEventListener("change", () => {
+        if (packetToggle.checked) {
+          packetContainer.classList.add("selected");
+          packetContainer.style.border = "2px solid orange"; // Подсветка выбранного пакета
+        } else {
+          packetContainer.classList.remove("selected");
+          packetContainer.style.border = "none"; // Убираем подсветку
+        }
+        // Пересчитываем общую цену
+        calculateTotalPrice(config);
+      });
+    } else {
+      // Логика для других конфигураций или моделей, включая Флагман AWD
+      packetToggle.style.display = "none"; // Скрываем чекбокс
+
+      // Пакет выбран по умолчанию для Флагман AWD или других моделей
+      packetContainer.classList.add("selected");
+      packetContainer.style.border = "2px solid orange";
+    }
   }
 }
+
+
 
 // Обновите логику, которая собирает данные после выбора пакета
 document.addEventListener("DOMContentLoaded", () => {
