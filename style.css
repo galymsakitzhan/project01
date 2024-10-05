@@ -69,7 +69,13 @@ footer{
 
 .total-price{
   font-size: 20px;
+  color: orange;
 }
+
+.descrip-total-price{
+  font-size: 20px;
+}
+
 
 
 .flex{
@@ -629,14 +635,15 @@ select::-ms-expand {
 
 
 .ts{
-  font-size: 13px;
+  font-size: 14px;
 }
 .tx{
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .hoxton{
   display: flex;
+  gap: 25px;
 }
 
 .sidebar-title{
@@ -741,10 +748,26 @@ select::-ms-expand {
 
 @media (max-width: 1380px) {
   .ts{
-    font-size: 13px;
+    font-size: 12px;
   }
   .tx{
-    font-size: 15px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 1320px) {
+  .ts{
+    font-size: 10px;
+  }
+  .tx{
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1284px) {
+  .hoxton{
+    display: none;
   }
 }
 
@@ -996,8 +1019,8 @@ select::-ms-expand {
     height: 115px;
   }
   .header-button{
-    font-size: 15px;
-    padding: 4px 5px;
+    font-size: 13px;
+    padding: 1px 5px;
     width: 150px;
   }
 }
@@ -1009,7 +1032,7 @@ select::-ms-expand {
   }
   .header-button{
     font-size: 12px;
-    padding: 5px 5px;
+    padding: 2px 5px;
   }
   .model-option {
     font-size: 12px;
@@ -1040,7 +1063,7 @@ select::-ms-expand {
   .header-button{
     font-size: 11px;
     padding: 1px 5px;
-    width: 135px;
+    width: 120px;
   }
   .model-option {
     font-size: 13px;
@@ -1079,9 +1102,9 @@ select::-ms-expand {
     width: 120px;
   }
   .header-button{
-    font-size: 12px;
-    padding: 2px 4px;
-    width: 125px;
+    font-size: 10px;
+    padding: 1px 2px;
+    width: 110px;
   }
   .model-option {
     font-size: 12px;
@@ -1147,11 +1170,11 @@ select::-ms-expand {
     gap: 12px;
   }
   .header-button{
-    font-size: 11px;
-    padding: 1px 4px;
-    width: 117px;
+    font-size: 10px;
+    padding: 1px 1px;
+    width: 110px;
   }
   .model-option {
-    font-size: 11px;
+    font-size: 9px;
   }
 }
