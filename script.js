@@ -71,24 +71,30 @@ function displayConfigurations(model) {
 
     configDiv.appendChild(configName);
     configDiv.appendChild(configPriceWithTradeIn);
+    const spex = document.querySelector(".specifications");
 
-    // Обработка клика по комплектации
-    configDiv.addEventListener("click", () => {
-      const previouslySelected = document.querySelector(".equipment.selected");
-      if (previouslySelected) {
-        previouslySelected.classList.remove("selected");
-      }
-      configDiv.classList.add("selected");
 
-      renderCarData(model, config);
-    });
+configDiv.addEventListener("click", () => {
+  const previouslySelected = document.querySelector(".equipment.selected");
+  if (previouslySelected) {
+    previouslySelected.classList.remove("selected");
+  }
+  configDiv.classList.add("selected");
 
-    // Автоматический выбор первой комплектации
-    if (index === 0) {
-      configDiv.click();
-    }
+  renderCarData(model, config);
+});
 
-    equipmentContainer.appendChild(configDiv);
+// Автоматический выбор первой комплектации
+if (index === 0) {
+  configDiv.click();
+
+
+  // Используем innerHTML, чтобы добавить строку HTML в элемент spex
+}else{
+}
+
+  equipmentContainer.appendChild(configDiv);
+
   });
 }
 
