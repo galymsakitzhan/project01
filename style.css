@@ -35,6 +35,9 @@
   border: 2px solid orange;
 }
 
+.selected-packet{
+  outline: 2px solid orange;
+}
 
 /* element header */
 .header-content{
@@ -162,17 +165,18 @@ button#next-image:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 0px 45px; */
+  color: grey;
 }
 
-.step {
+.step1,.step2,.step3 {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  color: gray;
 }
 
-.circle {
+.circle, .circle2,.circle3 {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -181,10 +185,12 @@ button#next-image:hover {
   justify-content: center;
   align-items: center;
   font-weight:300;
+  border-color: gray;
 }
 
-.completed .circle {
-  border-color: #000;
+.completed  {
+  border-color: black;
+  color: black;
 }
 
 .line {
@@ -353,8 +359,12 @@ hr {
 .packet-main{
   cursor: pointer;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 15px 0;
+}
+
+.packet-main img{
+  border-radius: 3px 0 0px 3px;
 }
 
 .rs{

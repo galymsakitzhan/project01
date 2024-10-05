@@ -5,7 +5,6 @@ let selectedInteriorImages = [];
 let selectedCar = {};
 let formData = {};
 
-// Форматирование цены
 function formatPrice(price) {
   return new Intl.NumberFormat("ru-RU", {
     style: "currency",
@@ -15,7 +14,6 @@ function formatPrice(price) {
   }).format(price);
 }
 
-// Инициализация страницы
 document.addEventListener("DOMContentLoaded", () => {
   const modelSelectTrigger = document.getElementById("model-select-trigger");
   const modelOptionsContainer = document.getElementById(
@@ -56,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Отображение всех комплектаций выбранной модели
 function displayConfigurations(model) {
   const equipmentContainer = document.querySelector(".option__car");
   equipmentContainer.innerHTML = "";
@@ -95,7 +92,6 @@ function displayConfigurations(model) {
   });
 }
 
-// Функция для отображения данных выбранной конфигурации
 function renderCarData(model, selectedConfig) {
   document.querySelector(".names").textContent = model.name;
 
@@ -114,7 +110,6 @@ function renderCarData(model, selectedConfig) {
   displayPacket(selectedConfig, model.name);
 }
 
-// Создание элемента цены
 function createPriceElement(config, withTradeIn = true) {
   const configPrice = document.createElement("div");
   configPrice.classList.add("equipment__price");
@@ -132,7 +127,6 @@ function createPriceElement(config, withTradeIn = true) {
   return configPrice;
 }
 
-// Отображение характеристик конфигурации
 function displayModifications(config) {
   const modificationContainer = document.querySelector(".modification");
   modificationContainer.innerHTML = "";
@@ -147,7 +141,6 @@ function displayModifications(config) {
   });
 }
 
-// Отображение экстерьера
 function displayExterior(config) {
   const exteriorContainer = document.querySelector(".exterior .car__colors");
   const nameExterior = document.querySelector(".name__exterior");
@@ -157,7 +150,7 @@ function displayExterior(config) {
 
   config.exterior.forEach((color, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px">`;
+    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px" loading="lazy">`;
 
     // Устанавливаем выбранный по умолчанию экстерьер
     if (index === 0) {
@@ -199,7 +192,6 @@ function displayExterior(config) {
   });
 }
 
-// Отображение колес
 function displayWheels(config) {
   const wheelsContainer = document.querySelector(".wheels .car__colors");
   const nameWheels = document.querySelector(".name__wheels");
@@ -209,7 +201,7 @@ function displayWheels(config) {
 
   config.wheels.forEach((wheel, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="90px">`;
+    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="90px" loading="lazy">`;
 
     if (index === 0) {
       nameWheels.textContent = wheel.name;
@@ -248,7 +240,6 @@ function displayWheels(config) {
   });
 }
 
-// Отображение интерьера
 function displayInterior(config) {
   const interiorContainer = document.querySelector(".interior .car__colors");
   const nameInterior = document.querySelector(".name__interior");
@@ -258,7 +249,7 @@ function displayInterior(config) {
 
   config.interior.forEach((interior, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="85px">`;
+    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="85px" loading="lazy">`;
 
     // Устанавливаем выбранный по умолчанию интерьер
     if (index === 0) {
@@ -300,7 +291,6 @@ function displayInterior(config) {
   });
 }
 
-// Функция для отображения пакета
 function displayPacket(config, modelName) {
   const packetContainer = document.querySelector(".packet-main");
   const namePacket = document.querySelector(".name__packet");
@@ -331,10 +321,8 @@ function displayPacket(config, modelName) {
       packetToggle.addEventListener("change", () => {
         if (packetToggle.checked) {
           packetContainer.classList.add("selected");
-          packetContainer.style.border = "2px solid orange"; // Подсветка выбранного пакета
         } else {
           packetContainer.classList.remove("selected");
-          packetContainer.style.border = "none"; // Убираем подсветку
         }
         // Пересчитываем общую цену
         calculateTotalPrice(config);
@@ -345,14 +333,10 @@ function displayPacket(config, modelName) {
 
       // Пакет выбран по умолчанию для Флагман AWD или других моделей
       packetContainer.classList.add("selected");
-      packetContainer.style.border = "2px solid orange";
     }
   }
 }
 
-
-
-// Обновите логику, которая собирает данные после выбора пакета
 document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("add-section-button")
@@ -448,9 +432,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-// Обновление слайдера
 function updateSlider(imageUrls) {
   let currentIndex = 0;
   const sliderImage = document.querySelector("#slider-image");
@@ -516,8 +497,6 @@ function updateSlider(imageUrls) {
   }
 }
 
-// Вычисление итоговой цены
-// Функция для вычисления итоговой цены с учетом всех опций и пакета
 function calculateTotalPrice(config) {
   let totalPrice = config.price;
 
@@ -562,10 +541,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const request = document.querySelector(".request");
   const button = document.getElementById("add-section-button");
+  const step2 = document.querySelector(".step2");
+  const circle2 = document.querySelector('.circle2');  
 
   request.style.display = "none";
 
   button.addEventListener("click", () => {
+    step2.style.color="black";
+    circle2.style.borderColor = "black";
+
     if (request.style.display === "none") {
       sidebar.style.display = "none";
       request.style.display = "block";
@@ -580,8 +564,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const request = document.querySelector(".request");
   const button1 = document.getElementById("back-button");
+  const step2 = document.querySelector(".step2");
+  const circle2 = document.querySelector(".circle2");
 
   button1.addEventListener("click", () => {
+    step2.style.color = "gray";
+    circle2.style.borderColor = "gray";
     if (request.style.display === "none") {
       sidebar.style.display = "none";
       request.style.display = "block";
@@ -690,11 +678,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-document
-  .getElementById("customer-form")
-  .addEventListener("submit", function (event) {
+document.getElementById("customer-form").addEventListener("submit", function (event) {
     event.preventDefault();
+
+
 
     formData = {
       firstName: document.getElementById("first-name").value,
@@ -836,6 +823,10 @@ submitButton.onclick = (event) => {
   if (valid) {
     btnText.innerHTML = "Отправлено"; // Change button text to "Отправлено"
     submitButton.classList.add("active");
+        const step3 = document.querySelector(".step3");
+        const circle3 = document.querySelector(".circle3");
+        step3.style.color = "black";
+        circle3.style.borderColor = "black";
 
     // Capture form data
     formData = {
