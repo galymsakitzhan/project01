@@ -742,7 +742,7 @@ select::-ms-expand {
 /* section 3 = (end) -> right background */
 .header-footer{
   display: none;
-  padding: 0 25px;
+  padding: 0 15px;
 }
 
 
@@ -808,9 +808,9 @@ select::-ms-expand {
 
   .hoxton1{
     width: 100%;
-    border: 1px solid orange;
+    border: 2px solid orange;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 15px;
     display: flex;
     justify-content: center;
