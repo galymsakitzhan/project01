@@ -636,9 +636,13 @@ select::-ms-expand {
 
 .ts{
   font-size: 14px;
+  color: rgb(106, 106, 106);
+  font-weight: 300;
 }
 .tx{
   font-size: 16px;
+  font-weight: 600;
+  color: #373737;
 }
 
 .hoxton{
@@ -736,6 +740,11 @@ select::-ms-expand {
   font-size: 17px;
 }
 /* section 3 = (end) -> right background */
+.header-footer{
+  display: none;
+  padding: 0 25px;
+}
+
 
 
 /* @media (min-height: 700px) {
@@ -795,6 +804,29 @@ select::-ms-expand {
 
   .hoxton{
     display: none;
+  }
+
+  .hoxton1{
+    width: 100%;
+    border: 1px solid orange;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ts{
+    font-size: 18px;
+  }
+
+  .tx{
+    font-size: 17px;
+  }
+
+  .header-footer{
+    display: block;
+    margin: 15px 0 0 0;
   }
 }
 
@@ -914,6 +946,14 @@ select::-ms-expand {
     margin: 0 5px;
     cursor: pointer;
     border-radius: 2px;
+  }
+
+  .ts{
+    font-size: 16px;
+  }
+
+  .tx{
+    font-size: 15px;
   }
   
   .thumbnails img:hover {
