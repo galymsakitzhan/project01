@@ -307,7 +307,9 @@ function displayPacket(config, modelName) {
   const infoPacket = document.querySelector(".info__packet");
   const pricePacket = document.querySelector(".price__packet");
   const packetImage = document.querySelector(".packet img");
+  const packetToggle = document.getElementById("packet-toggle"); // Чекбокс
 
+  // Скрываем секцию пакетов, если их нет
   document.querySelector(".packet").style.display = "none";
 
   if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
@@ -317,51 +319,119 @@ function displayPacket(config, modelName) {
     pricePacket.textContent = formatPrice(packet.price);
     packetImage.src = packet.imagePacketUrl;
 
-    // Show packet details initially
+    // Отображаем секцию пакетов
     document.querySelector(".packet").style.display = "block";
 
-    // Clear previous selection
-    packetContainer.classList.remove("selected");
-    packetContainer.style.border = "none";
-
-    if (config.name === "Флагман AWD") {
-      packetContainer.classList.add("selected");
-      packetContainer.style.border = "2px solid orange";
-      calculateTotalPrice(config);
-
-      packetContainer.addEventListener("click", () => {
+    // Обработчик события переключения
+    packetToggle.addEventListener("change", () => {
+      if (packetToggle.checked) {
         packetContainer.classList.add("selected");
-        packetContainer.style.border = "2px solid orange";
-        calculateTotalPrice(config);
-      });
-    }
-
-    if (config.name === "Премиум AWD") {
-      packetContainer.addEventListener("click", () => {
-        const isSelected = packetContainer.classList.contains("selected");
-
-        // Remove the selected class and border from all packet containers
-        document.querySelectorAll(".packet-main").forEach((elem) => {
-          elem.classList.remove("selected");
-          elem.style.border = "none";
-        });
-
-        // If the packet wasn't already selected, select it
-        if (!isSelected) {
-          packetContainer.classList.add("selected");
-          packetContainer.style.border = "2px solid orange";
-        } else {
-          // If it was selected, deselect it
-          packetContainer.classList.remove("selected");
-          packetContainer.style.border = "none";
-        }
-
-        // Calculate the total price
-        calculateTotalPrice(config);
-      });
-    }
+      } else {
+        packetContainer.classList.remove("selected");
+      }
+      // Пересчитываем общую цену
+      calculateTotalPrice(config);
+    });
   }
 }
+
+// Обновите логику, которая собирает данные после выбора пакета
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("add-section-button")
+    .addEventListener("click", () => {
+      const selectedModel = document.querySelector(".names").textContent;
+      const selectedConfiguration = document.querySelector(
+        ".equipment.main_conf.select .equipment__name"
+      ).textContent;
+
+      const selectedModelPrice = document.querySelector(
+        ".equipment.main_conf.select .equipment__price span.tradein"
+      ).textContent;
+
+      const selectedExteriorColor =
+        document.querySelector(".name__exterior").textContent;
+      const exteriorColorPrice =
+        document.querySelector(".price__exterior").textContent;
+      const selectedWheels =
+        document.querySelector(".name__wheels").textContent;
+      const selectedWheelsPrice =
+        document.querySelector(".price__wheels").textContent;
+      const selectedInterior =
+        document.querySelector(".name__interior").textContent;
+      const selectedInteriorPrice =
+        document.querySelector(".price__interior").textContent;
+
+      // Проверяем состояние чекбокса для пакета
+      const packetToggle = document.getElementById("packet-toggle");
+      let selectedPacket = "";
+      let selectedPacketPrice = 0;
+
+      if (packetToggle.checked) {
+        selectedPacket = document.querySelector(".name__packet").textContent;
+        selectedPacketPrice = Number(
+          document
+            .querySelector(".price__packet")
+            .textContent.replace(/\D/g, "")
+        );
+      }
+
+      const totalPrice = document.querySelector(".total-price").textContent;
+
+      selectedCar = {
+        model: selectedModel,
+        model_price: Number(selectedModelPrice.replace(/\D/g, "")),
+        configuration: selectedConfiguration,
+        exteriorColor: selectedExteriorColor,
+        exteriorColorPrice: Number(exteriorColorPrice.replace(/\D/g, "")),
+        wheels: selectedWheels,
+        wheels_price: Number(selectedWheelsPrice.replace(/\D/g, "")),
+        interior: selectedInterior,
+        interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
+        packet: selectedPacket,
+        packet_price: selectedPacketPrice,
+        totalPrice: Number(totalPrice.replace(/\D/g, "")),
+      };
+
+      // Обновляем отображение данных
+      document.querySelector(".model__").textContent = selectedCar.model;
+      document.querySelector(".model__price").textContent = formatPrice(
+        selectedCar.model_price
+      );
+      document.querySelector(".configuration__").textContent =
+        selectedCar.configuration;
+      document.querySelector(".exteriorColor__").textContent =
+        selectedCar.exteriorColor;
+      document.querySelector(".exteriorColor__price").textContent = formatPrice(
+        selectedCar.exteriorColorPrice
+      );
+      document.querySelector(".wheels__").textContent = selectedCar.wheels;
+      document.querySelector(".wheels__price").textContent = formatPrice(
+        selectedCar.wheels_price
+      );
+      document.querySelector(".interior__").textContent = selectedCar.interior;
+      document.querySelector(".interior__price").textContent = formatPrice(
+        selectedCar.interior_price
+      );
+
+      // Обновляем информацию о пакете
+      if (selectedCar.packet) {
+        document.querySelector(".packet__").textContent = selectedCar.packet;
+        document.querySelector(".packet__price").textContent = formatPrice(
+          selectedCar.packet_price
+        );
+      } else {
+        document.querySelector(".packet__").textContent = "";
+        document.querySelector(".packet__price").textContent = "";
+      }
+
+      document.querySelector(".totalPrice__").textContent = formatPrice(
+        selectedCar.totalPrice
+      );
+    });
+});
+
+
 
 // Обновление слайдера
 function updateSlider(imageUrls) {
@@ -531,10 +601,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".name__interior").textContent;
       const selectedInteriorPrice =
         document.querySelector(".price__interior").textContent;
-      const selectedPacket =
-        document.querySelector(".name__packet").textContent;
-      const selectedPacketPrice =
-        document.querySelector(".price__packet").textContent;
+
+      // Проверяем, выбран ли пакет (содержит ли элемент класс "selected")
+      const packetContainer = document.querySelector(".packet-main");
+      let selectedPacket = "";
+      let selectedPacketPrice = 0;
+
+      if (packetContainer.classList.contains("selected")) {
+        selectedPacket = document.querySelector(".name__packet").textContent;
+        selectedPacketPrice = Number(
+          document
+            .querySelector(".price__packet")
+            .textContent.replace(/\D/g, "")
+        );
+      }
+
       const totalPrice = document.querySelector(".total-price").textContent;
 
       selectedCar = {
@@ -548,11 +629,11 @@ document.addEventListener("DOMContentLoaded", () => {
         interior: selectedInterior,
         interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
         packet: selectedPacket,
-        packet_price: Number(selectedPacketPrice.replace(/\D/g, "")),
+        packet_price: selectedPacketPrice,
         totalPrice: Number(totalPrice.replace(/\D/g, "")),
       };
 
-      // Отправляем данные модели без блока "Trade-In"
+      // Обновляем данные модели
       document.querySelector(".model__").textContent = selectedCar.model;
       document.querySelector(".model__price").textContent = formatPrice(
         selectedCar.model_price
@@ -573,20 +654,25 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedCar.interior_price
       );
 
-      // Update the packet price display for Zeekr X
-      if (selectedCar.model === "Zeekr X") {
+      // Обновляем отображение пакета только если он выбран
+      if (selectedCar.packet) {
         document.querySelector(".packet__").textContent = selectedCar.packet;
         document.querySelector(".packet__price").textContent = formatPrice(
-          selectedCar.packet_price // Use the correct packet price
+          selectedCar.packet_price
         );
       } else {
+        // Если пакет не выбран, скрываем информацию о пакете
+        document.querySelector(".packet__").textContent = "";
+        document.querySelector(".packet__price").textContent = "";
       }
 
+      // Обновляем итоговую цену
       document.querySelector(".totalPrice__").textContent = formatPrice(
         selectedCar.totalPrice
       );
     });
 });
+
 
 document
   .getElementById("customer-form")

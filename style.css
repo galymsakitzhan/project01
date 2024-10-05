@@ -316,12 +316,45 @@ hr {
   border: 2px solid orange;
 }
 
-.equipment:hover{
-  border: 2px solid orange;
+.switch {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #c6c6c6;
+  border-radius: 50px;
+  transition: background 0.3s;
+  cursor: pointer;
+  -webkit-appearance: none;
 }
+
+.switch:checked {
+  background: #ff7f00;
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.switch:checked::before {
+  transform: translateX(20px);
+}
+
 
 .packet-main{
   cursor: pointer;
+  background-color: white;
+  border-radius: 5px;
+  margin: 15px 0;
 }
 
 .rs{
