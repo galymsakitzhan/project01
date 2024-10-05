@@ -15,7 +15,7 @@
               {
                 colorName: "Хрустально-белый",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_11/image_s.png?1698438911",
+                  "./image/icons/exterior/athenian_white.png",
                 carImageUrl: [
                   "https://zeekr-configurator.kz/userdata/section/section_11/image_27/1698438833_731427781_b.png",
                   "https://zeekr-configurator.kz/userdata/section/section_11/image_28/1698438837_979453695_b.png",
@@ -26,7 +26,7 @@
               {
                 colorName: "Электро-синий",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_16/image_s.png?1698439446",
+                  "./image/icons/exterior/electro_blue.png",
                 carImageUrl: [
                   "https://zeekr-configurator.kz/userdata/section/section_12/image_29/1698438852_1671378694_b.png",
                   "https://zeekr-configurator.kz/userdata/section/section_12/image_30/1698438856_397442189_b.png",
@@ -37,7 +37,7 @@
               {
                 colorName: "Техно-серый",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_17/image_s.png?1698439455",
+                  "./image/icons/exterior/techno_grey.png",
                 carImageUrl: [
                   "https://zeekr-configurator.kz/userdata/section/section_13/image_32/1698438872_952436982_b.png",
                   "https://zeekr-configurator.kz/userdata/section/section_13/image_34/1698438881_819340186_b.png",
@@ -48,7 +48,7 @@
               {
                 colorName: "Фантомно-черный",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_14/image_s.png?1698438954",
+                  "./image/icons/exterior/phantom_black.png",
                 carImageUrl: [
                   "https://zeekr-configurator.kz/userdata/section/section_14/image_36/1698438899_147482117_b.png",
                   "https://zeekr-configurator.kz/userdata/section/section_14/image_37/1698438903_1037729164_b.png",
@@ -61,7 +61,7 @@
               {
                 name: "22-дюймовые легкосплавные диски",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_10/image_s.png?1698847199",
+                  "./image/icons/wheels/22-inch_alloy_wheels.png",
                 price: 0,
               },
             ],
@@ -69,7 +69,7 @@
               {
                 name: "Угольно-черный и Каменно-серый",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_21/image_s.png?1698439951",
+                  "./image/icons/interior/coal_black_and_stone_grey.png",
                 price: 0,
                 interiorImageUrl: [
                   "./image/black-front.jpg",
@@ -79,7 +79,7 @@
               {
                 name: "Полуночно-синий и Полярно-белый",
                 imageUrl:
-                  "https://zeekr-configurator.kz/userdata/section/section_22/image_s.png?1698440023",
+                  "./image/icons/interior/r4tgtr.png",
                 price: 50000,
                 interiorImageUrl: [
                   "./image/white-front.png",

@@ -316,7 +316,6 @@ function displayPacket(config, modelName) {
     infoPacket.textContent = packet.info;
     pricePacket.textContent = formatPrice(packet.price);
     packetImage.src = packet.imagePacketUrl;
-    packetContainer.style.pointerEvents = "auto";
 
     // Show packet details initially
     document.querySelector(".packet").style.display = "block";
@@ -325,49 +324,44 @@ function displayPacket(config, modelName) {
     packetContainer.classList.remove("selected");
     packetContainer.style.border = "none";
 
-        if (config.name === "Премиум AWD") {
-          // packetContainer.style.pointerEvents = "auto";
-          packetContainer.addEventListener("click", () => {
-            packetContainer.style.pointerEvents = "auto";
-            const isSelected = packetContainer.classList.contains("selected");
-
-            // Toggle selection
-            if (!isSelected) {
-              packetContainer.classList.add("selected");
-              packetContainer.style.border = "2px solid orange";
-            } else {
-              packetContainer.classList.remove("selected");
-              packetContainer.style.border = "none";
-            }
-
-            // Calculate the total price
-            calculateTotalPrice(config);
-          });
-        }
-
-    // Handle Флагман selection
     if (config.name === "Флагман AWD") {
-      // Automatically select Флагман
       packetContainer.classList.add("selected");
       packetContainer.style.border = "2px solid orange";
       calculateTotalPrice(config);
 
-      // Disable interaction for Флагман
-      packetContainer.style.pointerEvents = "none";
+      packetContainer.addEventListener("click", () => {
+        packetContainer.classList.add("selected");
+        packetContainer.style.border = "2px solid orange";
+        calculateTotalPrice(config);
+      });
     }
 
+    if (config.name === "Премиум AWD") {
+      packetContainer.addEventListener("click", () => {
+        const isSelected = packetContainer.classList.contains("selected");
+
+        // Remove the selected class and border from all packet containers
+        document.querySelectorAll(".packet-main").forEach((elem) => {
+          elem.classList.remove("selected");
+          elem.style.border = "none";
+        });
+
+        // If the packet wasn't already selected, select it
+        if (!isSelected) {
+          packetContainer.classList.add("selected");
+          packetContainer.style.border = "2px solid orange";
+        } else {
+          // If it was selected, deselect it
+          packetContainer.classList.remove("selected");
+          packetContainer.style.border = "none";
+        }
+
+        // Calculate the total price
+        calculateTotalPrice(config);
+      });
+    }
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 // Обновление слайдера
 function updateSlider(imageUrls) {
@@ -476,8 +470,6 @@ function calculateTotalPrice(config) {
 
   return totalPrice;
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
