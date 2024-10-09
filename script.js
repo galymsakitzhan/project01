@@ -473,6 +473,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const secondSubmitButton = document.getElementById("secondSubmitButton");
   const form = document.querySelector("#customer-form");
   const errorMessage = document.querySelector("#error-message");
+  const submitButton = document.querySelector("#submitButton");
+  const backButton = document.querySelector("#back-button");
   const checkboxErrorMessage = document.querySelector(
     "#checkbox-error-message"
   );
@@ -482,17 +484,27 @@ document.addEventListener("DOMContentLoaded", () => {
   secondSubmitButton.style.display = "none"; // Скрыть secondSubmitButton изначально
 
   // Событие на кнопку "Продолжить"
-  button.addEventListener("click", () => {
-    if (request.style.display === "none") {
-      sidebar.style.display = "none";
-      request.style.display = "block";
-      secondSubmitButton.style.display = "block"; // Показать secondSubmitButton
-      button.style.display = "none"; // Скрыть add-section-button
-    }
-  });
+button.addEventListener("click", () => {
+  if (request.style.display === "none") {
+    sidebar.style.display = "none";
+    request.style.display = "block";
+    secondSubmitButton.style.display = "block";
+    button.style.display = "none";
+  }
+});
+
+backButton.addEventListener("click", () => {
+  sidebar.style.display = "block"; // Показываем боковую панель
+  request.style.display = "none"; // Скрываем запрос
+  secondSubmitButton.style.display = "none"; // Скрываем вторую кнопку отправки
+  button.style.display = "block"; // Показываем основную кнопку
+});
+
+
 
   // Валидация и отправка формы при нажатии на secondSubmitButton
   secondSubmitButton.addEventListener("click", (event) => {
+
     event.preventDefault(); // Предотвращение стандартного поведения формы
 
     // Сброс предыдущих сообщений об ошибках
@@ -537,6 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Если форма валидна
     if (valid) {
+      submitButton.click();
       btnText.innerHTML = "";
       btnText.innerHTML = "Отправлено"; // Изменение текста кнопки на "Отправлено"
       secondSubmitButton.classList.add("active");
