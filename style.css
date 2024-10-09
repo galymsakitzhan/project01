@@ -74,7 +74,7 @@
   
   
   .total-price{
-    font-size: 20px;
+    font-size: 19px;
   }
   
   
@@ -645,21 +645,21 @@
   }
   
   .action-button{
-    padding: 13px 10px;
-    width: 100%; 
     border-radius:5px; 
-    color: #fff; 
-    /* margin: 20px 0 100px 0; */
     border: none;
     outline: none;
     background: #252525;
-    font-size: 15px;
     text-align: center;
     box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-  
+    background-color: rgb(48, 48, 48); 
+    padding: 15px 10px; 
+    width: 200px; 
+    border-radius: 5px; 
+    color: #fff; 
+    font-size: 17px;
   }
   
   .check-box{
@@ -999,6 +999,13 @@
     }
     .model-option {
       font-size: 12px;
+    }
+    .action-button{
+      width: 180px;
+      padding: 12px 3px;
+    }
+    .total-price{
+      font-size: 17px;
     }
   }
   
