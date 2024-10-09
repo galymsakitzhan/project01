@@ -96,23 +96,53 @@ function displayConfigurations(model) {
 }
 
 // Функция для отображения данных выбранной конфигурации
-function renderCarData(model, selectedConfig) {
-  document.querySelector(".names").textContent = model.name;
+  function renderCarData(model, selectedConfig) {
+    // Отображение имени модели
+    document.querySelector(".names").textContent = model.name;
 
-  displayModifications(selectedConfig);
-  displayExterior(selectedConfig); // Обновляем экстерьер
-  displayWheels(selectedConfig); // Обновляем колеса
-  displayInterior(selectedConfig); // Обновляем интерьер
+    // Обновляем секции модификаций, экстерьера, колес и интерьера
+    displayModifications(selectedConfig);
+    displayExterior(selectedConfig); // Обновляем экстерьер
+    displayWheels(selectedConfig); // Обновляем колеса
+    displayInterior(selectedConfig); // Обновляем интерьер
 
-  // Устанавливаем слайдер с изображениями первого экстерьера и интерьера
-  selectedExteriorImages = selectedConfig.exterior[0].carImageUrl;
-  selectedInteriorImages = selectedConfig.interior[0].interiorImageUrl;
-  updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
+    // Устанавливаем слайдер с изображениями первого экстерьера и интерьера
+    selectedExteriorImages = selectedConfig.exterior[0].carImageUrl;
+    selectedInteriorImages = selectedConfig.interior[0].interiorImageUrl;
+    updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
 
-  const totalPrice = calculateTotalPrice(selectedConfig);
-  document.querySelector(".total-price").textContent = formatPrice(totalPrice);
-  displayPacket(selectedConfig, model.name);
-}
+    // Рассчитываем итоговую цену
+    const totalPrice = calculateTotalPrice(selectedConfig);
+    document.querySelector(".total-price").textContent =
+      formatPrice(totalPrice);
+
+    // Обновляем пакет, если есть
+    displayPacket(selectedConfig, model.name);
+
+    // Добавляем проверку модели для отображения спецификаций
+    const specElement = document.querySelector(".specifications");
+    specElement.innerHTML = ""; // Очищаем содержимое перед добавлением нового
+
+    if (model.name === "Zeekr 001") {
+      // Если выбрана модель Zeekr 001, отображаем спецификацию для нее
+      specElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="fill: orange;">
+          <path d="M331-431h37v-83h48q15.725 0 26.362-10.638Q453-535.275 453-551v-48q0-15.725-10.638-26.362Q431.725-636 416-636h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362v-131q0-15.725-11-26.362Q596-636 581-636h-84v205Zm37-37v-131h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260-200q-24 0-42-18t-18-42v-560q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560v-560H260v560ZM140-80q-24 0-42-18t-18-42v-620h60v620h620v60H140Zm120-740v560-560Z"></path>
+        </svg>
+        <p style="margin: 13px 0; font-size: 18px;">
+          <a style="color: orange;" href="https://zeekr-configurator.kz/userdata/rubrics/rubrics_2/pdf_ru.pdf?1725615272" target="_blank">Спецификация</a>
+        </p>`;
+    } else if (model.name === "Zeekr X") {
+      // Если выбрана модель Zeekr X, отображаем спецификацию для нее
+      specElement.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="fill: orange;">
+          <path d="M331-431h37v-83h48q15.725 0 26.362-10.638Q453-535.275 453-551v-48q0-15.725-10.638-26.362Q431.725-636 416-636h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362v-131q0-15.725-11-26.362Q596-636 581-636h-84v205Zm37-37v-131h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260-200q-24 0-42-18t-18-42v-560q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560v-560H260v560ZM140-80q-24 0-42-18t-18-42v-620h60v620h620v60H140Zm120-740v560-560Z"></path>
+        </svg>
+        <p style="margin: 13px 0; font-size: 18px;">
+          <a style="color: orange;" href="https://configurator.zeekralmaty.kz/userdata/rubrics/rubrics_7/pdf_ru.pdf?1725615303" target="_blank">Спецификация</a>
+        </p>`;
+    }
+  }
 
 // Создание элемента цены
 function createPriceElement(config, withTradeIn = true) {
@@ -157,7 +187,7 @@ function displayExterior(config) {
 
   config.exterior.forEach((color, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px">`;
+    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="75px">`;
 
     // Устанавливаем выбранный по умолчанию экстерьер
     if (index === 0) {
@@ -209,7 +239,7 @@ function displayWheels(config) {
 
   config.wheels.forEach((wheel, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="90px">`;
+    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="85px">`;
 
     if (index === 0) {
       nameWheels.textContent = wheel.name;
@@ -258,7 +288,7 @@ function displayInterior(config) {
 
   config.interior.forEach((interior, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="85px">`;
+    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="80px">`;
 
     // Устанавливаем выбранный по умолчанию интерьер
     if (index === 0) {
@@ -307,53 +337,42 @@ function displayPacket(config, modelName) {
   const infoPacket = document.querySelector(".info__packet");
   const pricePacket = document.querySelector(".price__packet");
   const packetImage = document.querySelector(".packet img");
+  const packetToggle = document.getElementById("packet-toggle"); // Чекбокс
 
+  // Скрываем секцию пакетов, если их нет
   document.querySelector(".packet").style.display = "none";
 
-  if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
+  // Проверяем, есть ли пакеты и соответствующая модель
+  if (config.packet && config.packet.length > 0) {
     const packet = config.packet[0];
     namePacket.textContent = packet.name;
     infoPacket.textContent = packet.info;
     pricePacket.textContent = formatPrice(packet.price);
     packetImage.src = packet.imagePacketUrl;
-    packetContainer.style.pointerEvents = "auto";
 
-    // Show packet details initially
+    // Отображаем секцию пакетов
     document.querySelector(".packet").style.display = "block";
 
-    // Clear previous selection
-    packetContainer.classList.remove("selected");
-    packetContainer.style.border = "none";
+    // Логика для Zeekr X Премиум AWD: показываем чекбокс для выбора пакета
+    if (modelName === "Zeekr X" && config.name != "Флагман AWD") {
+      packetToggle.style.display = "block"; // Показываем чекбокс
 
-    if (config.name === "Премиум AWD") {
-      // packetContainer.style.pointerEvents = "auto";
-      packetContainer.addEventListener("click", () => {
-        packetContainer.style.pointerEvents = "auto";
-        const isSelected = packetContainer.classList.contains("selected");
-
-        // Toggle selection
-        if (!isSelected) {
+      // Обработчик события переключения чекбокса
+      packetToggle.addEventListener("change", () => {
+        if (packetToggle.checked) {
           packetContainer.classList.add("selected");
-          packetContainer.style.border = "2px solid orange";
         } else {
           packetContainer.classList.remove("selected");
-          packetContainer.style.border = "none";
         }
-
-        // Calculate the total price
+        // Пересчитываем общую цену
         calculateTotalPrice(config);
       });
-    }
+    } else {
+      // Логика для других конфигураций или моделей, включая Флагман AWD
+      packetToggle.style.display = "none"; // Скрываем чекбокс
 
-    // Handle Флагман selection
-    if (config.name === "Флагман AWD") {
-      // Automatically select Флагман
+      // Пакет выбран по умолчанию для Флагман AWD или других моделей
       packetContainer.classList.add("selected");
-      packetContainer.style.border = "2px solid orange";
-      calculateTotalPrice(config);
-
-      // Disable interaction for Флагман
-      packetContainer.style.pointerEvents = "none";
     }
   }
 }
@@ -475,6 +494,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.querySelector("#error-message");
   const submitButton = document.querySelector("#submitButton");
   const backButton = document.querySelector("#back-button");
+  const step2 = document.querySelector(".step2");
+  const circle2 = document.querySelector(".circle2");
   const checkboxErrorMessage = document.querySelector(
     "#checkbox-error-message"
   );
@@ -490,6 +511,8 @@ button.addEventListener("click", () => {
     request.style.display = "block";
     secondSubmitButton.style.display = "block";
     button.style.display = "none";
+      step2.style.color = "black";
+      circle2.style.borderColor = "black";
   }
 });
 
