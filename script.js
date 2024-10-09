@@ -5,6 +5,7 @@ let selectedInteriorImages = [];
 let selectedCar = {};
 let formData = {};
 
+// Форматирование цены
 function formatPrice(price) {
   return new Intl.NumberFormat("ru-RU", {
     style: "currency",
@@ -14,6 +15,7 @@ function formatPrice(price) {
   }).format(price);
 }
 
+// Инициализация страницы
 document.addEventListener("DOMContentLoaded", () => {
   const modelSelectTrigger = document.getElementById("model-select-trigger");
   const modelOptionsContainer = document.getElementById(
@@ -54,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Отображение всех комплектаций выбранной модели
 function displayConfigurations(model) {
   const equipmentContainer = document.querySelector(".option__car");
   equipmentContainer.innerHTML = "";
@@ -71,8 +74,8 @@ function displayConfigurations(model) {
 
     configDiv.appendChild(configName);
     configDiv.appendChild(configPriceWithTradeIn);
-    const spex = document.querySelector(".specifications");
 
+    // Обработка клика по комплектации
     configDiv.addEventListener("click", () => {
       const previouslySelected = document.querySelector(".equipment.selected");
       if (previouslySelected) {
@@ -86,63 +89,32 @@ function displayConfigurations(model) {
     // Автоматический выбор первой комплектации
     if (index === 0) {
       configDiv.click();
-
-      // Используем innerHTML, чтобы добавить строку HTML в элемент spex
-    } else {
     }
 
     equipmentContainer.appendChild(configDiv);
   });
 }
 
-  function renderCarData(model, selectedConfig) {
-    // Отображение имени модели
-    document.querySelector(".names").textContent = model.name;
+// Функция для отображения данных выбранной конфигурации
+function renderCarData(model, selectedConfig) {
+  document.querySelector(".names").textContent = model.name;
 
-    // Обновляем секции модификаций, экстерьера, колес и интерьера
-    displayModifications(selectedConfig);
-    displayExterior(selectedConfig); // Обновляем экстерьер
-    displayWheels(selectedConfig); // Обновляем колеса
-    displayInterior(selectedConfig); // Обновляем интерьер
+  displayModifications(selectedConfig);
+  displayExterior(selectedConfig); // Обновляем экстерьер
+  displayWheels(selectedConfig); // Обновляем колеса
+  displayInterior(selectedConfig); // Обновляем интерьер
 
-    // Устанавливаем слайдер с изображениями первого экстерьера и интерьера
-    selectedExteriorImages = selectedConfig.exterior[0].carImageUrl;
-    selectedInteriorImages = selectedConfig.interior[0].interiorImageUrl;
-    updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
+  // Устанавливаем слайдер с изображениями первого экстерьера и интерьера
+  selectedExteriorImages = selectedConfig.exterior[0].carImageUrl;
+  selectedInteriorImages = selectedConfig.interior[0].interiorImageUrl;
+  updateSlider(selectedExteriorImages.concat(selectedInteriorImages));
 
-    // Рассчитываем итоговую цену
-    const totalPrice = calculateTotalPrice(selectedConfig);
-    document.querySelector(".total-price").textContent =
-      formatPrice(totalPrice);
+  const totalPrice = calculateTotalPrice(selectedConfig);
+  document.querySelector(".total-price").textContent = formatPrice(totalPrice);
+  displayPacket(selectedConfig, model.name);
+}
 
-    // Обновляем пакет, если есть
-    displayPacket(selectedConfig, model.name);
-
-    // Добавляем проверку модели для отображения спецификаций
-    const specElement = document.querySelector(".specifications");
-    specElement.innerHTML = ""; // Очищаем содержимое перед добавлением нового
-
-    if (model.name === "Zeekr 001") {
-      // Если выбрана модель Zeekr 001, отображаем спецификацию для нее
-      specElement.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="fill: orange;">
-          <path d="M331-431h37v-83h48q15.725 0 26.362-10.638Q453-535.275 453-551v-48q0-15.725-10.638-26.362Q431.725-636 416-636h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362v-131q0-15.725-11-26.362Q596-636 581-636h-84v205Zm37-37v-131h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260-200q-24 0-42-18t-18-42v-560q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560v-560H260v560ZM140-80q-24 0-42-18t-18-42v-620h60v620h620v60H140Zm120-740v560-560Z"></path>
-        </svg>
-        <p style="margin: 13px 0; font-size: 18px;">
-          <a style="color: orange;" href="https://zeekr-configurator.kz/userdata/rubrics/rubrics_2/pdf_ru.pdf?1725615272" target="_blank">Спецификация</a>
-        </p>`;
-    } else if (model.name === "Zeekr X") {
-      // Если выбрана модель Zeekr X, отображаем спецификацию для нее
-      specElement.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="fill: orange;">
-          <path d="M331-431h37v-83h48q15.725 0 26.362-10.638Q453-535.275 453-551v-48q0-15.725-10.638-26.362Q431.725-636 416-636h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.638 11-10.637 11-26.362v-131q0-15.725-11-26.362Q596-636 581-636h-84v205Zm37-37v-131h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260-200q-24 0-42-18t-18-42v-560q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560v-560H260v560ZM140-80q-24 0-42-18t-18-42v-620h60v620h620v60H140Zm120-740v560-560Z"></path>
-        </svg>
-        <p style="margin: 13px 0; font-size: 18px;">
-          <a style="color: orange;" href="https://configurator.zeekralmaty.kz/userdata/rubrics/rubrics_7/pdf_ru.pdf?1725615303" target="_blank">Спецификация</a>
-        </p>`;
-    }
-  }
-
+// Создание элемента цены
 function createPriceElement(config, withTradeIn = true) {
   const configPrice = document.createElement("div");
   configPrice.classList.add("equipment__price");
@@ -160,6 +132,7 @@ function createPriceElement(config, withTradeIn = true) {
   return configPrice;
 }
 
+// Отображение характеристик конфигурации
 function displayModifications(config) {
   const modificationContainer = document.querySelector(".modification");
   modificationContainer.innerHTML = "";
@@ -174,6 +147,7 @@ function displayModifications(config) {
   });
 }
 
+// Отображение экстерьера
 function displayExterior(config) {
   const exteriorContainer = document.querySelector(".exterior .car__colors");
   const nameExterior = document.querySelector(".name__exterior");
@@ -183,7 +157,7 @@ function displayExterior(config) {
 
   config.exterior.forEach((color, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px" loading="lazy">`;
+    button.innerHTML = `<img src="${color.imageUrl}" alt="${color.colorName}" width="80px">`;
 
     // Устанавливаем выбранный по умолчанию экстерьер
     if (index === 0) {
@@ -225,6 +199,7 @@ function displayExterior(config) {
   });
 }
 
+// Отображение колес
 function displayWheels(config) {
   const wheelsContainer = document.querySelector(".wheels .car__colors");
   const nameWheels = document.querySelector(".name__wheels");
@@ -234,7 +209,7 @@ function displayWheels(config) {
 
   config.wheels.forEach((wheel, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="90px" loading="lazy">`;
+    button.innerHTML = `<img src="${wheel.imageUrl}" alt="${wheel.name}" width="90px">`;
 
     if (index === 0) {
       nameWheels.textContent = wheel.name;
@@ -273,6 +248,7 @@ function displayWheels(config) {
   });
 }
 
+// Отображение интерьера
 function displayInterior(config) {
   const interiorContainer = document.querySelector(".interior .car__colors");
   const nameInterior = document.querySelector(".name__interior");
@@ -282,7 +258,7 @@ function displayInterior(config) {
 
   config.interior.forEach((interior, index) => {
     const button = document.createElement("button");
-    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="85px" loading="lazy">`;
+    button.innerHTML = `<img src="${interior.imageUrl}" alt="${interior.name}" width="85px">`;
 
     // Устанавливаем выбранный по умолчанию интерьер
     if (index === 0) {
@@ -324,147 +300,65 @@ function displayInterior(config) {
   });
 }
 
+// Функция для отображения пакета
 function displayPacket(config, modelName) {
   const packetContainer = document.querySelector(".packet-main");
   const namePacket = document.querySelector(".name__packet");
   const infoPacket = document.querySelector(".info__packet");
   const pricePacket = document.querySelector(".price__packet");
   const packetImage = document.querySelector(".packet img");
-  const packetToggle = document.getElementById("packet-toggle"); // Чекбокс
 
-  // Скрываем секцию пакетов, если их нет
   document.querySelector(".packet").style.display = "none";
 
-  // Проверяем, есть ли пакеты и соответствующая модель
-  if (config.packet && config.packet.length > 0) {
+  if (config.packet && config.packet.length > 0 && modelName === "Zeekr X") {
     const packet = config.packet[0];
     namePacket.textContent = packet.name;
     infoPacket.textContent = packet.info;
     pricePacket.textContent = formatPrice(packet.price);
     packetImage.src = packet.imagePacketUrl;
+    packetContainer.style.pointerEvents = "auto";
 
-    // Отображаем секцию пакетов
+    // Show packet details initially
     document.querySelector(".packet").style.display = "block";
 
-    // Логика для Zeekr X Премиум AWD: показываем чекбокс для выбора пакета
-    if (modelName === "Zeekr X" && config.name != "Флагман AWD") {
-      packetToggle.style.display = "block"; // Показываем чекбокс
+    // Clear previous selection
+    packetContainer.classList.remove("selected");
+    packetContainer.style.border = "none";
 
-      // Обработчик события переключения чекбокса
-      packetToggle.addEventListener("change", () => {
-        if (packetToggle.checked) {
+    if (config.name === "Премиум AWD") {
+      // packetContainer.style.pointerEvents = "auto";
+      packetContainer.addEventListener("click", () => {
+        packetContainer.style.pointerEvents = "auto";
+        const isSelected = packetContainer.classList.contains("selected");
+
+        // Toggle selection
+        if (!isSelected) {
           packetContainer.classList.add("selected");
+          packetContainer.style.border = "2px solid orange";
         } else {
           packetContainer.classList.remove("selected");
+          packetContainer.style.border = "none";
         }
-        // Пересчитываем общую цену
+
+        // Calculate the total price
         calculateTotalPrice(config);
       });
-    } else {
-      // Логика для других конфигураций или моделей, включая Флагман AWD
-      packetToggle.style.display = "none"; // Скрываем чекбокс
+    }
 
-      // Пакет выбран по умолчанию для Флагман AWD или других моделей
+    // Handle Флагман selection
+    if (config.name === "Флагман AWD") {
+      // Automatically select Флагман
       packetContainer.classList.add("selected");
+      packetContainer.style.border = "2px solid orange";
+      calculateTotalPrice(config);
+
+      // Disable interaction for Флагман
+      packetContainer.style.pointerEvents = "none";
     }
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("add-section-button")
-    .addEventListener("click", () => {
-      const selectedModel = document.querySelector(".names").textContent;
-      const selectedConfiguration = document.querySelector(
-        ".equipment.main_conf.select .equipment__name"
-      ).textContent;
-
-      const selectedModelPrice = document.querySelector(
-        ".equipment.main_conf.select .equipment__price span.tradein"
-      ).textContent;
-
-      const selectedExteriorColor =
-        document.querySelector(".name__exterior").textContent;
-      const exteriorColorPrice =
-        document.querySelector(".price__exterior").textContent;
-      const selectedWheels =
-        document.querySelector(".name__wheels").textContent;
-      const selectedWheelsPrice =
-        document.querySelector(".price__wheels").textContent;
-      const selectedInterior =
-        document.querySelector(".name__interior").textContent;
-      const selectedInteriorPrice =
-        document.querySelector(".price__interior").textContent;
-
-      // Проверяем состояние чекбокса для пакета
-      const packetToggle = document.getElementById("packet-toggle");
-      let selectedPacket = "";
-      let selectedPacketPrice = 0;
-
-      if (packetToggle.checked) {
-        selectedPacket = document.querySelector(".name__packet").textContent;
-        selectedPacketPrice = Number(
-          document
-            .querySelector(".price__packet")
-            .textContent.replace(/\D/g, "")
-        );
-      }
-
-      const totalPrice = document.querySelector(".total-price").textContent;
-
-      selectedCar = {
-        model: selectedModel,
-        model_price: Number(selectedModelPrice.replace(/\D/g, "")),
-        configuration: selectedConfiguration,
-        exteriorColor: selectedExteriorColor,
-        exteriorColorPrice: Number(exteriorColorPrice.replace(/\D/g, "")),
-        wheels: selectedWheels,
-        wheels_price: Number(selectedWheelsPrice.replace(/\D/g, "")),
-        interior: selectedInterior,
-        interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
-        packet: selectedPacket,
-        packet_price: selectedPacketPrice,
-        totalPrice: Number(totalPrice.replace(/\D/g, "")),
-      };
-
-      // Обновляем отображение данных
-      document.querySelector(".model__").textContent = selectedCar.model;
-      document.querySelector(".model__price").textContent = formatPrice(
-        selectedCar.model_price
-      );
-      document.querySelector(".configuration__").textContent =
-        selectedCar.configuration;
-      document.querySelector(".exteriorColor__").textContent =
-        selectedCar.exteriorColor;
-      document.querySelector(".exteriorColor__price").textContent = formatPrice(
-        selectedCar.exteriorColorPrice
-      );
-      document.querySelector(".wheels__").textContent = selectedCar.wheels;
-      document.querySelector(".wheels__price").textContent = formatPrice(
-        selectedCar.wheels_price
-      );
-      document.querySelector(".interior__").textContent = selectedCar.interior;
-      document.querySelector(".interior__price").textContent = formatPrice(
-        selectedCar.interior_price
-      );
-
-      // Обновляем информацию о пакете
-      if (selectedCar.packet) {
-        document.querySelector(".packet__").textContent = selectedCar.packet;
-        document.querySelector(".packet__price").textContent = formatPrice(
-          selectedCar.packet_price
-        );
-      } else {
-        document.querySelector(".packet__").textContent = "";
-        document.querySelector(".packet__price").textContent = "";
-      }
-
-      document.querySelector(".totalPrice__").textContent = formatPrice(
-        selectedCar.totalPrice
-      );
-    });
-});
-
+// Обновление слайдера
 function updateSlider(imageUrls) {
   let currentIndex = 0;
   const sliderImage = document.querySelector("#slider-image");
@@ -530,6 +424,8 @@ function updateSlider(imageUrls) {
   }
 }
 
+// Вычисление итоговой цены
+// Функция для вычисления итоговой цены с учетом всех опций и пакета
 function calculateTotalPrice(config) {
   let totalPrice = config.price;
 
@@ -574,43 +470,102 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const request = document.querySelector(".request");
   const button = document.getElementById("add-section-button");
-  const step2 = document.querySelector(".step2");
-  const circle2 = document.querySelector(".circle2");
+  const secondSubmitButton = document.getElementById("secondSubmitButton");
+  const form = document.querySelector("#customer-form");
+  const errorMessage = document.querySelector("#error-message");
+  const checkboxErrorMessage = document.querySelector(
+    "#checkbox-error-message"
+  );
+  const btnText = document.querySelector("#btnText");
 
   request.style.display = "none";
+  secondSubmitButton.style.display = "none"; // Скрыть secondSubmitButton изначально
 
+  // Событие на кнопку "Продолжить"
   button.addEventListener("click", () => {
-    step2.style.color = "black";
-    circle2.style.borderColor = "black";
-
     if (request.style.display === "none") {
       sidebar.style.display = "none";
       request.style.display = "block";
+      secondSubmitButton.style.display = "block"; // Показать secondSubmitButton
+      button.style.display = "none"; // Скрыть add-section-button
+    }
+  });
+
+  // Валидация и отправка формы при нажатии на secondSubmitButton
+  secondSubmitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Предотвращение стандартного поведения формы
+
+    // Сброс предыдущих сообщений об ошибках
+    errorMessage.style.display = "none";
+    checkboxErrorMessage.style.display = "none";
+
+    let valid = true;
+
+    // Проверка полей формы
+    const firstName = document.getElementById("first-name");
+    const lastName = document.getElementById("last-name");
+    const phone = document.getElementById("phone");
+    const consent = document.querySelector("#consent");
+
+    if (!firstName.value) {
+      valid = false;
+      firstName.style.borderColor = "red";
     } else {
-      sidebar.style.display = "block";
-      request.style.display = "none";
+      firstName.style.borderColor = "";
+    }
+
+    if (!lastName.value) {
+      valid = false;
+      lastName.style.borderColor = "red";
+    } else {
+      lastName.style.borderColor = "";
+    }
+
+    if (!phone.value) {
+      valid = false;
+      phone.style.borderColor = "red";
+    } else {
+      phone.style.borderColor = "";
+    }
+
+    if (!consent.checked) {
+      valid = false;
+      checkboxErrorMessage.innerHTML =
+        "Необходимо подтвердить согласие на обработку данных";
+      checkboxErrorMessage.style.display = "block";
+    }
+
+    // Если форма валидна
+    if (valid) {
+      btnText.innerHTML = "";
+      btnText.innerHTML = "Отправлено"; // Изменение текста кнопки на "Отправлено"
+      secondSubmitButton.classList.add("active");
+
+      // Здесь можно добавить действие по отправке формы, если нужно
+      // form.submit();
     }
   });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.querySelector(".sidebar");
-  const request = document.querySelector(".request");
-  const button1 = document.getElementById("back-button");
-  const step2 = document.querySelector(".step2");
-  const circle2 = document.querySelector(".circle2");
-
-  button1.addEventListener("click", () => {
-    step2.style.color = "gray";
-    circle2.style.borderColor = "gray";
-    if (request.style.display === "none") {
-      sidebar.style.display = "none";
-      request.style.display = "block";
-    } else {
-      sidebar.style.display = "block";
-      request.style.display = "none";
-    }
-  });
+  // Получаем текущий месяц
+  const months = [
+    "январь",
+    "февраль",
+    "март",
+    "апрель",
+    "май",
+    "июнь",
+    "июль",
+    "август",
+    "сентябрь",
+    "октябрь",
+    "ноябрь",
+    "декабрь",
+  ];
+  const currentDate = new Date();
+  const currentMonth = months[currentDate.getMonth()]; // Получаем название месяца
+  document.getElementById("current-month").textContent = currentMonth; // Устанавливаем текст
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -639,21 +594,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".name__interior").textContent;
       const selectedInteriorPrice =
         document.querySelector(".price__interior").textContent;
-
-      // Проверяем, выбран ли пакет (содержит ли элемент класс "selected")
-      const packetContainer = document.querySelector(".packet-main");
-      let selectedPacket = "";
-      let selectedPacketPrice = 0;
-
-      if (packetContainer.classList.contains("selected")) {
-        selectedPacket = document.querySelector(".name__packet").textContent;
-        selectedPacketPrice = Number(
-          document
-            .querySelector(".price__packet")
-            .textContent.replace(/\D/g, "")
-        );
-      }
-
+      const selectedPacket =
+        document.querySelector(".name__packet").textContent;
+      const selectedPacketPrice =
+        document.querySelector(".price__packet").textContent;
       const totalPrice = document.querySelector(".total-price").textContent;
 
       selectedCar = {
@@ -667,11 +611,11 @@ document.addEventListener("DOMContentLoaded", () => {
         interior: selectedInterior,
         interior_price: Number(selectedInteriorPrice.replace(/\D/g, "")),
         packet: selectedPacket,
-        packet_price: selectedPacketPrice,
+        packet_price: Number(selectedPacketPrice.replace(/\D/g, "")),
         totalPrice: Number(totalPrice.replace(/\D/g, "")),
       };
 
-      // Обновляем данные модели
+      // Отправляем данные модели без блока "Trade-In"
       document.querySelector(".model__").textContent = selectedCar.model;
       document.querySelector(".model__price").textContent = formatPrice(
         selectedCar.model_price
@@ -692,19 +636,15 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedCar.interior_price
       );
 
-      // Обновляем отображение пакета только если он выбран
-      if (selectedCar.packet) {
+      // Update the packet price display for Zeekr X
+      if (selectedCar.model === "Zeekr X") {
         document.querySelector(".packet__").textContent = selectedCar.packet;
         document.querySelector(".packet__price").textContent = formatPrice(
-          selectedCar.packet_price
+          selectedCar.packet_price // Use the correct packet price
         );
       } else {
-        // Если пакет не выбран, скрываем информацию о пакете
-        document.querySelector(".packet__").textContent = "";
-        document.querySelector(".packet__price").textContent = "";
       }
 
-      // Обновляем итоговую цену
       document.querySelector(".totalPrice__").textContent = formatPrice(
         selectedCar.totalPrice
       );
@@ -856,10 +796,6 @@ submitButton.onclick = (event) => {
   if (valid) {
     btnText.innerHTML = "Отправлено"; // Change button text to "Отправлено"
     submitButton.classList.add("active");
-    const step3 = document.querySelector(".step3");
-    const circle3 = document.querySelector(".circle3");
-    step3.style.color = "black";
-    circle3.style.borderColor = "black";
 
     // Capture form data
     formData = {
