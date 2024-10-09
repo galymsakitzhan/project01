@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 20px;
   }
   
   .slider-images {
@@ -254,7 +254,7 @@
     max-width: 460px;
     min-height: 100vh;
     background-color: #f1f0e9;
-    padding: 25px;
+    padding: 20px 25px;
     max-height: 100vh;
     z-index: 10;
     overflow-y: auto;
