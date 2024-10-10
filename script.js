@@ -865,7 +865,7 @@ submitButton.onclick = (event) => {
     // Log the form data to the console
     console.log("Form data submitted:", formData);
 
-    fetch("https://zeekr-kz.webtm.ru/cars/zeekr_001", {
+    fetch("https://zeekr-kz.webtm.ru/submit_for", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
