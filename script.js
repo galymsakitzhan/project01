@@ -494,8 +494,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.querySelector("#error-message");
   const submitButton = document.querySelector("#submitButton");
   const backButton = document.querySelector("#back-button");
-  const step2 = document.querySelector(".step2");
-  const circle2 = document.querySelector(".circle2");
+  const step2 = document.querySelector(".step1");
+  const circle2 = document.querySelector(".circle1");
   const checkboxErrorMessage = document.querySelector(
     "#checkbox-error-message"
   );
@@ -511,8 +511,8 @@ button.addEventListener("click", () => {
     request.style.display = "block";
     secondSubmitButton.style.display = "block";
     button.style.display = "none";
-      step2.style.color = "black";
-      circle2.style.borderColor = "black";
+    step2.style.color = "black";
+    circle2.style.borderColor = "black";
   }
 });
 
@@ -521,12 +521,18 @@ backButton.addEventListener("click", () => {
   request.style.display = "none"; // Скрываем запрос
   secondSubmitButton.style.display = "none"; // Скрываем вторую кнопку отправки
   button.style.display = "block"; // Показываем основную кнопку
+  // step2.style.color = "gray";
+  // circle2.style.borderColor = "gray";
 });
 
 
 
   // Валидация и отправка формы при нажатии на secondSubmitButton
   secondSubmitButton.addEventListener("click", (event) => {
+      const step3 = document.querySelector(".step2");
+      const circle3 = document.querySelector(".circle2");
+      const step2 = document.querySelector(".step1");
+      const circle2 = document.querySelector(".circle1");
 
     event.preventDefault(); // Предотвращение стандартного поведения формы
 
@@ -576,6 +582,11 @@ backButton.addEventListener("click", () => {
       btnText.innerHTML = "";
       btnText.innerHTML = "Отправлено"; // Изменение текста кнопки на "Отправлено"
       secondSubmitButton.classList.add("active");
+                  step3.style.color = "black";
+                  circle3.style.borderColor = "black";
+                  step2.style.color = "black";
+                  circle2.style.borderColor = "black";
+
 
       // Здесь можно добавить действие по отправке формы, если нужно
       // form.submit();
@@ -832,6 +843,8 @@ submitButton.onclick = (event) => {
   if (valid) {
     btnText.innerHTML = "Отправлено"; // Change button text to "Отправлено"
     submitButton.classList.add("active");
+                step3.style.color = "gray";
+                circle3.style.borderColor = "gray";
 
     // Capture form data
     formData = {
