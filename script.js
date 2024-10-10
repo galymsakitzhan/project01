@@ -865,7 +865,7 @@ submitButton.onclick = (event) => {
     // Log the form data to the console
     console.log("Form data submitted:", formData);
 
-    fetch("http://45.82.14.184:8080/submit_form", {
+    fetch("https://zeekr-kz.webtm.ru/cars/zeekr_001", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
