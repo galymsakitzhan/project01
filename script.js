@@ -580,7 +580,7 @@ backButton.addEventListener("click", () => {
     if (valid) {
       submitButton.click();
       btnText.innerHTML = "";
-      btnText.innerHTML = "Отправлено"; // Изменение текста кнопки на "Отправлено"
+      btnText.innerHTML = "Отправлено";
       secondSubmitButton.classList.add("active");
                   step3.style.color = "black";
                   circle3.style.borderColor = "black";
@@ -838,13 +838,10 @@ submitButton.onclick = (event) => {
       "Необходимо подтвердить согласие на обработку данных";
     checkboxErrorMessage.style.display = "block"; // Show error message
   }
-
   // If all fields are valid
   if (valid) {
-    btnText.innerHTML = "Отправлено"; // Change button text to "Отправлено"
+    btnText.innerHTML = "Отправлено";
     submitButton.classList.add("active");
-                step3.style.color = "gray";
-                circle3.style.borderColor = "gray";
 
     // Capture form data
     formData = {
@@ -868,9 +865,28 @@ submitButton.onclick = (event) => {
     // Log the form data to the console
     console.log("Form data submitted:", formData);
 
-    // Optionally submit the form if desired
-    // form.submit();
+    fetch("http://45.82.14.184:8080/submit_form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   } else {
     console.log("Form validation failed");
+    // Re-enable the button if validation fails
+    submitButton.disabled = false;
   }
-};
+}
