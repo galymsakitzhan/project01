@@ -90,7 +90,7 @@
   }
   
   .total-group{
-      min-width: 400px;
+      width: 480px;
       justify-content: center;
       gap: 50px;
       flex-wrap: nowrap;
@@ -850,6 +850,14 @@
     .tx{
       font-size: 17px;
     }
+
+    .total-group{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+    }
+
   }
   
   @media (max-width: 770px) {
